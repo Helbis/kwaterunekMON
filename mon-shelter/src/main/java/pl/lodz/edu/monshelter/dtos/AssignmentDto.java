@@ -7,4 +7,7 @@ public class AssignmentDto extends AbstractDto{
     private ZonedDateTime fromTime;
     private ZonedDateTime toTime;
 
+    public AssignmentDto(Long id) {
+        super(id);
+    }
 }

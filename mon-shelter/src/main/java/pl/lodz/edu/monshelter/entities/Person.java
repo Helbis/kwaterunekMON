@@ -2,7 +2,6 @@ package pl.lodz.edu.monshelter.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -34,12 +33,19 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Assignment> assignmentList;
 
-    public Person(String name, String surname, String rank, String info) {
+    public Person(Long id, String name, String surname, String rank, String info, String telephone) {
+        this(name, surname, rank, info, telephone);
+        this.id = id;
+    }
+
+    public Person(String name, String surname, String rank, String info, String telephone) {
         this.name = name;
         this.surname = surname;
         this.rank = rank;
         this.info = info;
+        this.telephone = telephone;
     }
+
     public Person() {
 
     }
