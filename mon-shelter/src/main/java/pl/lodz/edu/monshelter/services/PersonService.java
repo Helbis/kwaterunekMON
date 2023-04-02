@@ -53,4 +53,20 @@ public class PersonService {
         }
         return repository.save(person);
     }
+
+    public Person editPerson(Person personEntity) {
+        Long id = personEntity.getId();
+        Person personToEdit = repository.findById(id).orElseThrow(
+                () -> new NotFoundException(String.format("Person with given id: %s not found.", id)));
+        copyProperties(personEntity, personToEdit);
+        return repository.save(personToEdit);
+    }
+
+    private void copyProperties(Person sourceEntity, Person targetEntity) {
+        targetEntity.setName(sourceEntity.getName());
+        targetEntity.setSurname(sourceEntity.getSurname());
+        targetEntity.setRank(sourceEntity.getRank());
+        targetEntity.setInfo(sourceEntity.getInfo());
+        targetEntity.setTelephone(sourceEntity.getTelephone());
+    }
 }

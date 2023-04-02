@@ -36,4 +36,11 @@ public class PersonController {
         Person personEntity = DtoConverter.createPersonEntity(person);
         return DtoConverter.toPersonDto(service.addNewPerson(personEntity));
     }
+
+
+    @PutMapping
+    public PersonDto editPerson(@RequestBody PersonDto person) {
+        Person personEntity = DtoConverter.createPersonEntity(person);
+        return DtoConverter.toPersonDto(service.editPerson(personEntity));
+    }
 }
