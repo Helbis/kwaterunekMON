@@ -1,5 +1,6 @@
 package pl.lodz.edu.monshelter.controllers;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,9 +22,15 @@ public class PersonController {
         this.service = service;
     }
 
-    @GetMapping("all")
+    @GetMapping("allActive")
     public List<PersonDto> getAllPeople() {
-        return DtoConverter.toPersonDtoList(service.getPeopleList());
+        return DtoConverter.toPersonDtoList(service.getPeopleList(false));
+    }
+
+
+    @GetMapping("all")
+    public List<PersonDto> getAllPeopleIncludeInactive() {
+        return DtoConverter.toPersonDtoList(service.getPeopleList(true));
     }
 
     @GetMapping("{id}")
@@ -35,6 +42,12 @@ public class PersonController {
     public PersonDto createPerson(@RequestBody PersonDto person) {
         Person personEntity = DtoConverter.createPersonEntity(person);
         return DtoConverter.toPersonDto(service.addNewPerson(personEntity));
+    }
+
+    @DeleteMapping("{id}")
+    public PersonDto deletePerson(@PathVariable Long id) {
+        //TODO implement
+        throw new NotImplementedException();
     }
 
 

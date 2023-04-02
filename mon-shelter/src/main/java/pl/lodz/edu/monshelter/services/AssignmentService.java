@@ -30,11 +30,11 @@ public class AssignmentService {
         Room room2 = roomService.getRoomList().get(1);
         Room room3 = roomService.getRoomList().get(2);
 
-        Person person1 = personService.getPeopleList().get(0);
-        Person person2 = personService.getPeopleList().get(1);
-        Person person3 = personService.getPeopleList().get(2);
-        Person person4 = personService.getPeopleList().get(3);
-        Person person5 = personService.getPeopleList().get(4);
+        Person person1 = personService.getPeopleList(true).get(0);
+        Person person2 = personService.getPeopleList(true).get(1);
+        Person person3 = personService.getPeopleList(true).get(2);
+        Person person4 = personService.getPeopleList(true).get(3);
+        Person person5 = personService.getPeopleList(true).get(4);
 
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         ZoneId zoneId = ZoneId.of("UTC+1");

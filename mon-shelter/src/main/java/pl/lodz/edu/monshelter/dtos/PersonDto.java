@@ -24,14 +24,16 @@ public class PersonDto extends AbstractDto {
     private String rank;
     private String info;
     private String telephone;
+    private boolean active;
 
-    public PersonDto(Long id, String name, String surname, String rank, String info, String telephone) {
+    public PersonDto(Long id, String name, String surname, String rank, String info, String telephone, boolean active) {
         super(id);
         this.name = name;
         this.surname = surname;
         this.rank = rank;
         this.info = info;
         this.telephone = telephone;
+        this.active = active;
     }
 }
 

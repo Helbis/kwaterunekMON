@@ -22,20 +22,25 @@ public class PersonService {
         this.repository = repository;
 
         List<Person> people = List.of(
-                new Person("Jacek", "Grudzień", "Generał", null, "543543543"),
-                new Person("Beata", "Wąs", "Cywil", null, null),
-                new Person("Monika", "Piórko", "Cywil", "Kucharka", null),
-                new Person("Adam", "Nowak", "Sierżant", null, null),
-                new Person("Tom", "Binary", "Pułkownik", "Preferuje mieszkać sam", null),
-                new Person("Piotr", "Salko", "Generał", null, null),
-                new Person("Anna", "Piątek", "Cywil", "Higienistka", "928182321"),
-                new Person("Ludwik", "Nowakowski", "Cywil", "Koserwator budynku", null)
+                new Person("Jacek", "Grudzień", "Generał", null, "543543543",true),
+                new Person("Beata", "Wąs", "Cywil", null, null,true),
+                new Person("Monika", "Piórko", "Cywil", "Kucharka", null,true),
+                new Person("Adam", "Nowak", "Sierżant", null, null,true),
+                new Person("Tom", "Binary", "Pułkownik", "Preferuje mieszkać sam", null,true),
+                new Person("Piotr", "Salko", "Generał", null, null,true),
+                new Person("Anna", "Piątek", "Cywil", "Higienistka", "928182321",true),
+                new Person("Ludwik", "Nowakowski", "Cywil", "Koserwator budynku", null,true),
+                new Person("Bob", "Nieaktywny", null,"Wyjechał z kraju",null,false)
         );
         repository.saveAll(people);
     }
 
-    public List<Person> getPeopleList() {
-        return CollectionUtils.iterableToList(repository.findAll());
+    public List<Person> getPeopleList(boolean includeInactive) {
+        List<Person> personList = CollectionUtils.iterableToList(repository.findAll());
+        if(!includeInactive){
+            personList = personList.stream().filter(Person::isActive).toList();
+        }
+        return personList;
     }
 
     public Person getPersonWithId(Long id) {

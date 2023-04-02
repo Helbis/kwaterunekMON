@@ -30,20 +30,24 @@ public class Person {
     @Column(nullable = true, unique = true)
     private String telephone;
 
+    @Column(nullable = false)
+    private boolean active = true;
+
     @OneToMany(mappedBy = "person")
     private List<Assignment> assignmentList;
 
-    public Person(Long id, String name, String surname, String rank, String info, String telephone) {
-        this(name, surname, rank, info, telephone);
+    public Person(Long id, String name, String surname, String rank, String info, String telephone, boolean active) {
+        this(name, surname, rank, info, telephone, active);
         this.id = id;
     }
 
-    public Person(String name, String surname, String rank, String info, String telephone) {
+    public Person(String name, String surname, String rank, String info, String telephone, boolean active) {
         this.name = name;
         this.surname = surname;
         this.rank = rank;
         this.info = info;
         this.telephone = telephone;
+        this.active = active;
     }
 
     public Person() {
