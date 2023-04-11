@@ -3,6 +3,7 @@ package pl.lodz.edu.monshelter.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+import pl.lodz.edu.monshelter.dtos.PersonDto;
 import pl.lodz.edu.monshelter.exceptions.ConflictException;
 import pl.lodz.edu.monshelter.exceptions.NotFoundException;
 import pl.lodz.edu.monshelter.util.CollectionUtils;
@@ -73,5 +74,9 @@ public class PersonService {
         targetEntity.setRank(sourceEntity.getRank());
         targetEntity.setInfo(sourceEntity.getInfo());
         targetEntity.setTelephone(sourceEntity.getTelephone());
+    }
+
+    public void deletePerson(Long id) {
+        repository.deleteById(id);
     }
 }

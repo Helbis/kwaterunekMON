@@ -2,6 +2,8 @@ package pl.lodz.edu.monshelter.controllers;
 
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import pl.lodz.edu.monshelter.dtos.PersonDto;
@@ -45,9 +47,9 @@ public class PersonController {
     }
 
     @DeleteMapping("{id}")
-    public PersonDto deletePerson(@PathVariable Long id) {
-        //TODO implement
-        throw new NotImplementedException();
+    public ResponseEntity<Long> deletePerson(@PathVariable Long id) {
+        service.deletePerson(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
