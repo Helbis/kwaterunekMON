@@ -1,4 +1,4 @@
-package pl.lodz.edu.monshelter;
+package pl.lodz.edu.monshelter.util;
 
 import java.util.ArrayList;
 import java.util.List;

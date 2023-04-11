@@ -1,10 +1,9 @@
 package pl.lodz.edu.monshelter.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 @Entity
@@ -13,20 +12,44 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
+
+    @Column(nullable = false)
     private String surname;
 
+
+    @Column(nullable = true)
     private String rank;
 
+
+    @Column(nullable = true)
     private String info;
 
-    public Person(String name, String surname, String rank, String info) {
+    @Column(nullable = true, unique = true)
+    private String telephone;
+
+    @Column(nullable = false)
+    private boolean active = true;
+
+    @OneToMany(mappedBy = "person")
+    private List<Assignment> assignmentList;
+
+    public Person(Long id, String name, String surname, String rank, String info, String telephone, boolean active) {
+        this(name, surname, rank, info, telephone, active);
+        this.id = id;
+    }
+
+    public Person(String name, String surname, String rank, String info, String telephone, boolean active) {
         this.name = name;
         this.surname = surname;
         this.rank = rank;
         this.info = info;
+        this.telephone = telephone;
+        this.active = active;
     }
+
     public Person() {
 
     }
