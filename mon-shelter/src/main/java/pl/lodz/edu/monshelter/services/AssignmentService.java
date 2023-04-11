@@ -62,4 +62,7 @@ public class AssignmentService {
         return CollectionUtils.iterableToList(assignmentRepository.findAll());
     }
 
+    public Assignment createAssignment(Assignment assignment) {
+        return assignmentRepository.save(assignment);
+    }
 }

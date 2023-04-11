@@ -2,10 +2,13 @@ package pl.lodz.edu.monshelter.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import pl.lodz.edu.monshelter.dtos.InstitutionDto;
 import pl.lodz.edu.monshelter.entities.Institution;
 import pl.lodz.edu.monshelter.services.InstitutionService;
+import pl.lodz.edu.monshelter.util.DtoConverter;
 
 import java.util.List;
 
@@ -21,8 +24,14 @@ public class InstitutionController {
     }
 
     @GetMapping("all")
-    public List<Institution> getAllInstitutions() {
-        return service.getInstitutionsList();
+    public List<InstitutionDto> getAllInstitutions() {
+        return
+                DtoConverter.toIntitutionDtoList(service.getInstitutionsList());
     }
 
+    @PostMapping()
+    public InstitutionDto createInstitution(InstitutionDto institutionDto) {
+        Institution entity = service.createInstitution(DtoConverter.createInstitutionEntity(institutionDto));
+        return DtoConverter.toIntitutionDto(entity);
+    }
 }

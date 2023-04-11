@@ -34,4 +34,7 @@ public class InstitutionService {
         return institution.orElse(null);
     }
 
+    public Institution createInstitution(Institution institutionEntity) {
+        return repository.save(institutionEntity);
+    }
 }
