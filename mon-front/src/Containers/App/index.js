@@ -1,6 +1,8 @@
 import { createContext, useState } from "react";
-import ReactSwitch from 'react-switch';
-import InputForm from "../../Components/Form";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Layout from "../../pages/Layout";
+import Home from "../../pages/Home";
+import PersonList from "../../pages/PersonList";
 
 export const ThemeContext = createContext(null);
 
@@ -13,17 +15,14 @@ function App() {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
-      <div className="App" id={theme}>
-        <div className='App-header'>
-          <p>Darko mode</p><ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
-        </div>
-
-        <InputForm />
-    
-      </div>
-    </ThemeContext.Provider>
-    
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="people" element={<PersonList />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 
