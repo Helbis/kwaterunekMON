@@ -15,9 +15,8 @@ public class Institution {
 
     private String name;
 
-    //TODO Przywrócić po zaimplementowaniu klas DTO
-//    @OneToMany(mappedBy = "institution")
-//    private List<Room> roomList = new ArrayList<>();
+    @OneToMany(mappedBy = "institution")
+    private List<Room> roomList = new ArrayList<>();
 
     public Institution(String name) {
         this.name = name;

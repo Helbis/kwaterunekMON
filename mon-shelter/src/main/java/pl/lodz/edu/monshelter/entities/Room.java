@@ -3,6 +3,8 @@ package pl.lodz.edu.monshelter.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 public class Room {
@@ -14,8 +16,12 @@ public class Room {
 
     private int slots;
 
-    @OneToOne
+    @ManyToOne
     private Institution institution;
+
+    @OneToMany(mappedBy = "room")
+    private List<Assignment> assignmentList;
+
 
     public Room(String name, int slots, Institution institution) {
         this.name = name;
