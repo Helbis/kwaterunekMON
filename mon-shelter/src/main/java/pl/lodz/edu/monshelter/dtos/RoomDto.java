@@ -9,6 +9,7 @@ public class RoomDto extends AbstractDto {
 
     private String name;
     private int slots;
+    private int occupation;
     private Long institutionId;
 
     public RoomDto(Long id, String name, int slots, Long institutionId) {

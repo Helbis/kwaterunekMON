@@ -1,6 +1,5 @@
 package pl.lodz.edu.monshelter.util;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pl.lodz.edu.monshelter.dtos.AssignmentDto;
 import pl.lodz.edu.monshelter.dtos.InstitutionDto;
 import pl.lodz.edu.monshelter.dtos.PersonDto;
@@ -9,10 +8,7 @@ import pl.lodz.edu.monshelter.entities.Assignment;
 import pl.lodz.edu.monshelter.entities.Institution;
 import pl.lodz.edu.monshelter.entities.Person;
 import pl.lodz.edu.monshelter.entities.Room;
-import pl.lodz.edu.monshelter.repositories.InstitutionRepository;
-import pl.lodz.edu.monshelter.services.InstitutionService;
 
-import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.List;
 
@@ -36,12 +32,12 @@ public class DtoConverter {
         return new Institution(institutionDto.getId(), institutionDto.getName());
     }
 
-    public static InstitutionDto toIntitutionDto(Institution entity) {
+    public static InstitutionDto toInstitutionDto(Institution entity) {
         return new InstitutionDto(entity.getId(), entity.getName());
     }
 
     public static List<InstitutionDto> toIntitutionDtoList(List<Institution> institutionsList) {
-        return institutionsList.stream().map(DtoConverter::toIntitutionDto).toList();
+        return institutionsList.stream().map(DtoConverter::toInstitutionDto).toList();
     }
 
     public static List<RoomDto> toRoomDtoList(List<Room> roomList) {
@@ -62,10 +58,10 @@ public class DtoConverter {
 
     public static AssignmentDto toAssignmentDto(Assignment assignment) {
         return new AssignmentDto(assignment.getId(), assignment.getFromTime(), assignment.getToTime(),
-                assignment.getPerson().getId(), assignment.getRoom().getId());
+                assignment.getPerson().getId(), assignment.getRoom().getId(), assignment.isActive());
     }
 
     public static Assignment createAssignmentFromDto(AssignmentDto assignmentDto) {
-        return new Assignment(assignmentDto.getFromTime(),assignmentDto.getToTime(),null,null);
+        return new Assignment(assignmentDto.getFromTime(), assignmentDto.getToTime(), null, null);
     }
 }

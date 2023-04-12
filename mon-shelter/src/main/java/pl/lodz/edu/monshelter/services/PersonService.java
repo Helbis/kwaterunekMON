@@ -2,14 +2,13 @@ package pl.lodz.edu.monshelter.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
-import pl.lodz.edu.monshelter.dtos.PersonDto;
+import pl.lodz.edu.monshelter.entities.Person;
 import pl.lodz.edu.monshelter.exceptions.ConflictException;
 import pl.lodz.edu.monshelter.exceptions.NotFoundException;
-import pl.lodz.edu.monshelter.util.CollectionUtils;
-import pl.lodz.edu.monshelter.entities.Person;
 import pl.lodz.edu.monshelter.repositories.PersonRepository;
+import pl.lodz.edu.monshelter.util.CollectionUtils;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,22 +22,22 @@ public class PersonService {
         this.repository = repository;
 
         List<Person> people = List.of(
-                new Person("Jacek", "Grudzień", "Generał", null, "543543543",true),
-                new Person("Beata", "Wąs", "Cywil", null, null,true),
-                new Person("Monika", "Piórko", "Cywil", "Kucharka", null,true),
-                new Person("Adam", "Nowak", "Sierżant", null, null,true),
-                new Person("Tom", "Binary", "Pułkownik", "Preferuje mieszkać sam", null,true),
-                new Person("Piotr", "Salko", "Generał", null, null,true),
-                new Person("Anna", "Piątek", "Cywil", "Higienistka", "928182321",true),
-                new Person("Ludwik", "Nowakowski", "Cywil", "Koserwator budynku", null,true),
-                new Person("Bob", "Nieaktywny", null,"Wyjechał z kraju",null,false)
+                new Person("Jacek", "Grudzień", "Generał", null, "543543543", true),
+                new Person("Beata", "Wąs", "Cywil", null, null, true),
+                new Person("Monika", "Piórko", "Cywil", "Kucharka", null, true),
+                new Person("Adam", "Nowak", "Sierżant", null, null, true),
+                new Person("Tom", "Binary", "Pułkownik", "Preferuje mieszkać sam", null, true),
+                new Person("Piotr", "Salko", "Generał", null, null, true),
+                new Person("Anna", "Piątek", "Cywil", "Higienistka", "928182321", true),
+                new Person("Ludwik", "Nowakowski", "Cywil", "Koserwator budynku", null, true),
+                new Person("Bob", "Nieaktywny", null, "Wyjechał z kraju", null, false)
         );
         repository.saveAll(people);
     }
 
     public List<Person> getPeopleList(boolean includeInactive) {
         List<Person> personList = CollectionUtils.iterableToList(repository.findAll());
-        if(!includeInactive){
+        if (!includeInactive) {
             personList = personList.stream().filter(Person::isActive).toList();
         }
         return personList;
@@ -77,6 +76,11 @@ public class PersonService {
     }
 
     public void deletePerson(Long id) {
+        Person person = getPersonWithId(id);
+        boolean conflicted = person.getAssignmentList().stream().anyMatch(ass -> ass.getToTime().isAfter(ZonedDateTime.now()) && ass.isActive());
+        if (conflicted) {
+            throw new ConflictException("Person with id %s has planned assignments in future, cannot be deleted.".formatted(id));
+        }
         repository.deleteById(id);
     }
 }

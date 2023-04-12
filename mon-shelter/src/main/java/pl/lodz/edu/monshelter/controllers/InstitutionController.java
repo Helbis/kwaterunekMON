@@ -32,6 +32,6 @@ public class InstitutionController {
     @PostMapping()
     public InstitutionDto createInstitution(InstitutionDto institutionDto) {
         Institution entity = service.createInstitution(DtoConverter.createInstitutionEntity(institutionDto));
-        return DtoConverter.toIntitutionDto(entity);
+        return DtoConverter.toInstitutionDto(entity);
     }
 }

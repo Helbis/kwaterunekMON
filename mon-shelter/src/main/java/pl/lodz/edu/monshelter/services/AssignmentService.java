@@ -2,6 +2,7 @@ package pl.lodz.edu.monshelter.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.lodz.edu.monshelter.exceptions.ConflictException;
 import pl.lodz.edu.monshelter.util.CollectionUtils;
 import pl.lodz.edu.monshelter.entities.Assignment;
 import pl.lodz.edu.monshelter.entities.Person;
@@ -17,14 +18,10 @@ import java.util.List;
 public class AssignmentService {
 
     private final AssignmentRepository assignmentRepository;
-    private final RoomService roomService;
-    private final PersonService personService;
 
     @Autowired
     public AssignmentService(AssignmentRepository assignmentRepository, RoomService roomService, PersonService personService) {
         this.assignmentRepository = assignmentRepository;
-        this.roomService = roomService;
-        this.personService = personService;
 
         Room room1 = roomService.getRoomList().get(0);
         Room room2 = roomService.getRoomList().get(1);
@@ -36,7 +33,6 @@ public class AssignmentService {
         Person person4 = personService.getPeopleList(true).get(3);
         Person person5 = personService.getPeopleList(true).get(4);
 
-        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         ZoneId zoneId = ZoneId.of("UTC+1");
         List<Assignment> assignments = List.of(
                 new Assignment(
@@ -63,6 +59,22 @@ public class AssignmentService {
     }
 
     public Assignment createAssignment(Assignment assignment) {
+        // Check if person is active
+        if (!assignment.getPerson().isActive()) {
+            throw new ConflictException("User with id %s is inactive.".formatted(assignment.getPerson().getId()));
+        }
+
+        // Get all assignments conflicting with new assignment
+        List<Assignment> assignmentList = assignment.getRoom().getAssignmentList();
+        long conflictedAssignments = assignmentList.stream().filter(ass -> ass.isActive() && assignmentsConflicts(ass, assignment)).count();
+        if (assignment.getRoom().getSlots() <= conflictedAssignments) {
+            throw new ConflictException("Room with id %s have not enough slots in given period.".formatted(assignment.getRoom().getId()));
+        }
         return assignmentRepository.save(assignment);
+    }
+
+    private boolean assignmentsConflicts(Assignment ass1, Assignment ass2) {
+        return !(ass1.getFromTime().isBefore(ass2.getFromTime()) && ass1.getToTime().isBefore(ass2.getFromTime()) ||
+                ass1.getFromTime().isAfter(ass2.getToTime()) && ass1.getToTime().isAfter(ass2.getToTime()));
     }
 }
