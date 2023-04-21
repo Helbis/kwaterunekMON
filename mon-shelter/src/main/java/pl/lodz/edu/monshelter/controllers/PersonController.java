@@ -1,5 +1,6 @@
 package pl.lodz.edu.monshelter.controllers;
 
+import jakarta.validation.Valid;
 import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,7 +42,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public PersonDto createPerson(@RequestBody PersonDto person) {
+    public PersonDto createPerson(@RequestBody @Valid PersonDto person) {
         Person personEntity = DtoConverter.createPersonEntity(person);
         return DtoConverter.toPersonDto(service.addNewPerson(personEntity));
     }
