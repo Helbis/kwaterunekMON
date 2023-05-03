@@ -52,7 +52,7 @@ class NewPersonForm extends Component {
     }
 
     handleSubmit = async () => {
-        const res = await axios.post('http://localhost:8080/api/person', {
+        await axios.post('http://localhost:8080/api/person', {
             name: this.state.name,
             surname: this.state.surname,
             rank: this.state.rank,
@@ -67,7 +67,7 @@ class NewPersonForm extends Component {
                 (error) => {
                     alert(error.message)
                 }
-            )
+            );
     }
 }
 

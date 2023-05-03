@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import "../styles/PersonPage.css"
+import "../Styles/PersonPage.css"
 import PersonTable from "../Components/PersonTable";
 import NewPersonForm from "../Components/NewPersonForm";
 
