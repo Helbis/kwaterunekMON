@@ -1,5 +1,7 @@
 package pl.lodz.edu.monshelter.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,12 +21,14 @@ Sample JSON output
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class PersonDto extends AbstractDto {
+    @NotBlank
     private String name;
+    @NotBlank
     private String surname;
     private String rank;
     private String info;
     private String telephone;
-    private boolean active;
+    private boolean active = true;
 
     public PersonDto(Long id, String name, String surname, String rank, String info, String telephone, boolean active) {
         super(id);
