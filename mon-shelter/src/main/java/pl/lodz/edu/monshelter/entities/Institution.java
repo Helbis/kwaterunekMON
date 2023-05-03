@@ -25,4 +25,9 @@ public class Institution {
     public Institution() {
 
     }
+
+    public Institution(Long id, String name) {
+        this(name);
+        this.id = id;
+    }
 }

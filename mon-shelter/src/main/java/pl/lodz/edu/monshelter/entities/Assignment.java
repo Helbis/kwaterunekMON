@@ -16,6 +16,8 @@ public class Assignment {
 
     private ZonedDateTime toTime;
 
+    private boolean active = true;
+
     @ManyToOne
     private Person person;
 
