@@ -1,7 +1,7 @@
 #person-table {
     /*font-family: Arial, Helvetica, sans-serif;*/
     border-collapse: collapse;
-    width: 80%;
+    width: 100%;
 }
 
 #person-table td, #person-table th {
@@ -44,12 +44,10 @@
 }
 
 .person-form-container {
-    padding: 2%;
+    margin-top: 50px;
+    padding-left: 30%;
     width: 30%;
+    text-align: center;
 }
 
-.person-table-container {
-    padding: 5%;
-    width: 100%;
-}
 

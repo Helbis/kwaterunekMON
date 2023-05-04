@@ -17,11 +17,13 @@ const Layout = () => {
     return (
         <ThemeContext.Provider value={{theme, toggleTheme}}>
             <div className="App" id={theme}>
-                <NavBar/>
                 <div className='App-header'>
+                    <NavBar/>
                     <p>Darko mode</p><ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
                 </div>
-                <Outlet/>
+                <div className='App-content'>
+                    <Outlet/>
+                </div>
             </div>
         </ThemeContext.Provider>
     )

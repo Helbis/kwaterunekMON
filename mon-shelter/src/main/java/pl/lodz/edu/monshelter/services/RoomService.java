@@ -47,4 +47,8 @@ public class RoomService {
         return roomRepository.findById(roomId).orElseThrow(
                 () -> new NotFoundException(String.format("Room with given id: %s not found.", roomId)));
     }
+
+    public List<Room> getRoomList(Long institutionId) {
+        return roomRepository.findAllByInstitutionId(institutionId);
+    }
 }

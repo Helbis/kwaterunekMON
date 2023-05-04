@@ -4,6 +4,7 @@ import Layout from "../../Pages/Layout";
 import Home from "../../Pages/Home";
 import ShelteringPage from "../../Pages/ShelteringPage"
 import PersonPage from "../../Pages/PersonPage";
+import {ToastContainer} from "react-toastify";
 
 export const ThemeContext = createContext(null);
 
@@ -17,6 +18,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <ToastContainer />
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>

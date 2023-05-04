@@ -1,47 +1,31 @@
-import React from "react";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
 import "../Styles/PersonPage.css"
 import PersonTable from "../Components/PersonTable";
 import NewPersonForm from "../Components/NewPersonForm";
+import {fetchPersonList} from "../Util/API";
 
-export default class PersonPage extends React.Component {
+export default function PersonPage() {
 
-    constructor(props) {
-        super(props);
-        this.formRef = React.createRef();
-    }
+    const [persons, setPersons] = useState([])
 
-    state = {
-        persons: []
-    }
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-    componentDidMount() {
-        this.fetchPersons()
-    }
+    const fetchData = async () => {
+        const result = await fetchPersonList();
+        setPersons(result)
+    };
 
-    fetchPersons = () => {
-        axios.get(`http://localhost:8080/api/person/allActive`)
-            .then(res => {
-                const persons = res.data;
-                this.setState({persons});
-            })
-    }
-
-    render() {
-        return (
-            <div>
-                <PersonTable persons={this.state.persons}/>
-                <div className='person-form-container'>
-                    <NewPersonForm onSubmit={() => {
-                        this.handleSubmit()
-                    }} ref={this.formRef}/>
-                </div>
+    return (
+        <div className="person-page-container">
+            <PersonTable persons={persons}/>
+            <div
+                className='person-form-container'>
+                <NewPersonForm
+                    afterSubmit={() => fetchData()}
+                />
             </div>
-        )
-    }
-
-    handleSubmit() {
-        this.fetchPersons()
-    }
-
+        </div>
+    )
 }
