@@ -52,6 +52,15 @@ export const fetchInstitutionList = async () => {
     }
 }
 
+export const fetchRoomList = async () => {
+    try {
+        const response = await axios.get(BASE_API_URL + 'room/all')
+        return response.data
+    } catch (error) {
+        handleError(error)
+    }
+}
+
 export const fetchRoomListByInstitution = async (institution_id) => {
     const url = BASE_API_URL + 'room/' + institution_id
     try {
@@ -76,6 +85,17 @@ export const postAssignment = async (beginDate, endDate, personId, roomId) => {
         if (200 === response.status) {
             notifySuccess('Assignment created successfully!')
         }
+        return response.data
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const fetchAssignments = async () => {
+    try {
+        const response = await axios.get(
+            BASE_API_URL + 'assignment/all'
+        )
         return response.data
     } catch (error) {
         handleError(error)

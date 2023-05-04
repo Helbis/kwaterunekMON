@@ -3,6 +3,7 @@ import ReactSwitch from "react-switch";
 import {createContext, useState} from "react";
 
 export const ThemeContext = createContext(null);
+
 function NavBar() {
 
     const [theme, setTheme] = useState("dark");
@@ -21,6 +22,9 @@ function NavBar() {
             </li>
             <li>
                 <Link to="/shelter">Shelter</Link>
+            </li>
+            <li>
+                <Link to="shelters">Shelter List</Link>
             </li>
         </ul>
     </nav>;

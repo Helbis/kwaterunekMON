@@ -5,6 +5,7 @@ import Home from "../../Pages/Home";
 import ShelteringPage from "../../Pages/ShelteringPage"
 import PersonPage from "../../Pages/PersonPage";
 import {ToastContainer} from "react-toastify";
+import AssignmentsPage from "../../Pages/AssignmentsPage";
 
 export const ThemeContext = createContext(null);
 
@@ -18,12 +19,13 @@ function App() {
 
     return (
         <BrowserRouter>
-            <ToastContainer />
+            <ToastContainer/>
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>
                     <Route path="people" element={<PersonPage/>}/>
                     <Route path="shelter" element={<ShelteringPage/>}/>
+                    <Route path="shelters" element={<AssignmentsPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

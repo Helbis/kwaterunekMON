@@ -5,6 +5,7 @@ import '../Styles/ShelteringPage.css'
 import {DateRangePicker} from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import 'react-toastify/dist/ReactToastify.css';
+import {prettyDate} from "../Util/Parser";
 
 function ShelteringPage() {
 
@@ -71,12 +72,11 @@ function ShelteringPage() {
         console.log(`ISO date: ${selectedDate[0].toISOString()}`)
     }
 
-    function prettyDate(date) {
+    function formatDateRange(date) {
         if (date == null || date[0] == null || date[1] == null) {
             return ''
         }
-        return `${date[0].getDate()}/${date[0].getMonth() + 1}/${date[0].getFullYear()}
-        - ${date[1].getDate()}/${date[1].getMonth() + 1}/${date[1].getFullYear()}`
+        return `${prettyDate(date[0])} - ${prettyDate(date[1])}`
     }
 
     function submitAssignment() {
@@ -84,7 +84,7 @@ function ShelteringPage() {
     }
 
     function handleRoomChanged(newValue) {
-        if(newValue!=null) {
+        if (newValue != null) {
             setSelectedRoom(newValue.value)
         } else {
             setSelectedRoom('')
@@ -126,7 +126,7 @@ function ShelteringPage() {
                 <p>DEBUG RIGHT PANE</p>
                 <p>Selected person id: {selectedPerson}</p>
                 <p>Selected room id: {selectedRoom}</p>
-                <p>Selected date: {prettyDate(selectedDate)}</p>
+                <p>Selected date: {formatDateRange(selectedDate)}</p>
             </div>
         </div>
     )
