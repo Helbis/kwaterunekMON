@@ -1,0 +1,24 @@
+.sheltering-page-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    column-gap: 20%;
+
+    /*DEBUG*/
+    /*background-color: aqua;*/
+    /*border: solid 5px red;*/
+}
+
+.left-pane {
+
+    /*DEBUG*/
+    /*border: solid 2px blue;*/
+}
+
+.left-pane > * {
+    margin-bottom: 5%;
+}
+
+.right-pane {
+    /*DEBUG*/
+    /*border: solid 2px #006d3a;*/
+}

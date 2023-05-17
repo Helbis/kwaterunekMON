@@ -56,6 +56,12 @@ public class PersonService {
                 throw new ConflictException(String.format("Person with given id: %s already exists.", person.getId()));
             }
         }
+        if (person.getTelephone() != null) {
+            Optional<Person> expected = repository.findByTelephone(person.getTelephone());
+            if (expected.isPresent()) {
+                throw new ConflictException(String.format("Person with given telephone: %s already exists.", person.getTelephone()));
+            }
+        }
         return repository.save(person);
     }
 

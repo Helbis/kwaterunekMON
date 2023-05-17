@@ -1,0 +1,149 @@
+:root {
+    --dark-mode-background: #242424;
+    --dark-mode-text: #bdbdbd;
+    --light-mode-background: #bdbdbd;
+    --light-mode-text: #242424;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    /*box-sizing: border-box;*/
+}
+
+/* colors */
+#light {
+    background-color: var(--light-mode-background);
+    color: var(--light-mode-text);
+}
+
+#dark {
+    background-color: var(--dark-mode-background);
+    color: var(--dark-mode-text);
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+}
+
+#dark body {
+    background-color: var(--dark-mode-background);
+    color: var(--dark-mode-text);
+}
+
+#light body {
+    background-color: var(--light-mode-background);
+    color: var(--light-mode-text);
+}
+
+/* main app */
+.App {
+    width: 100%;
+    min-height: 100vh;
+}
+
+.App-header {
+    min-height: 40px;
+    height: 5vh;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    position: fixed;
+    background-color: #242424;
+}
+
+.App-header p {
+    font-size: 18px;
+    line-height: 160%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.App-content {
+    box-sizing: border-box;
+    padding-top: 5vh;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+#nav-links-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#nav-links-list li {
+    float: left;
+    margin: 10px;
+}
+
+/* form */
+.main-form {
+    width: 450px;
+    margin: 20px;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.main-form form {
+    width: 100%;
+}
+
+.main-form form label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.main-form form input[type="text"] {
+    display: block;
+    width: 40%;
+    /*margin-left: auto;*/
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.main-form form input[type="file"] {
+    display: block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-bottom: 10px;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.main-form form input[type="submit"] {
+    display: block;
+    width: 30%;
+    height: 30px;
+    border-radius: 15px;
+    outline: none;
+    border: 1px solid #006d3a;
+    background-color: #006033;
+    color: #fff;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -1,74 +1,51 @@
-import React, {Component} from 'react';
-import axios from "axios";
+import React, {useState} from 'react';
+import {createPerson} from "../Util/API";
 
-class NewPersonForm extends Component {
+function NewPersonForm(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: null,
-            surname: null,
-            rank: null,
-            telephone: null,
-            info: null
-        }
-    }
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [rank, setRank] = useState("");
+    const [telephone, setTelephone] = useState("");
+    const [info, setInfo] = useState("");
 
-    render() {
-        return (
-            <div id='new-person-form'>
-                <p>Create new person:</p>
-                <input placeholder='Name' value={this.state.name} onChange={this.handleChangeName}/>
-                <input placeholder='Surname' value={this.state.surname} onChange={this.handleChangeSurname}/>
-                <input placeholder='Rank' value={this.state.rank} onChange={this.handleChangeRank}/>
-                <input placeholder='Telephone' value={this.state.telephone} onChange={this.handleChangeTelephone}/>
-                <input placeholder='Info' value={this.state.info} onChange={this.handleChangeInfo}/>
-                <button onClick={() => {
-                    this.handleSubmit()
-                }}>Submit
-                </button>
-            </div>
-        );
-    }
+    const handleSubmit = async () => {
+        await createPerson(name, surname, rank, info, telephone)
+        props.afterSubmit()
+    };
 
-    handleChangeName = (e) => {
-        this.setState({name: e.target.value})
-    }
+    return (
+        <div id="new-person-form">
+            <p>Create new person:</p>
+            <input
+                placeholder="Name"
+                value={name}
+                onChange={event => setName(event.target.value)}/>
+            <input
+                placeholder="Surname"
+                value={surname}
+                onChange={event => setSurname(event.target.value)}
+            />
+            <input
+                placeholder="Rank"
+                value={rank}
+                onChange={event => setRank(event.target.value)}/>
+            <input
+                placeholder="Telephone"
+                value={telephone}
+                onChange={event => setTelephone(event.target.value)}
+            />
+            <input
+                placeholder="Info"
+                value={info}
+                onChange={event => setInfo(event.target.value)}/>
+            <button
+                onClick={handleSubmit}>Submit
+            </button>
+        </div>
+    );
 
-    handleChangeSurname = (e) => {
-        this.setState({surname: e.target.value})
-    }
 
-    handleChangeRank = (e) => {
-        this.setState({rank: e.target.value})
-    }
-
-    handleChangeTelephone = (e) => {
-        this.setState({telephone: e.target.value})
-    }
-
-    handleChangeInfo = (e) => {
-        this.setState({info: e.target.value})
-    }
-
-    handleSubmit = async () => {
-        const res = await axios.post('http://localhost:8080/api/person', {
-            name: this.state.name,
-            surname: this.state.surname,
-            rank: this.state.rank,
-            info: this.state.info,
-            telephone: this.state.telephone,
-            active: true
-        })
-            .then(
-                () => {
-                    this.props.onSubmit()
-                }).catch(
-                (error) => {
-                    alert(error.message)
-                }
-            )
-    }
 }
 
 export default NewPersonForm;
