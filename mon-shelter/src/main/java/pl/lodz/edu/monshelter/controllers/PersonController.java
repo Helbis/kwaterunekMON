@@ -53,7 +53,6 @@ public class PersonController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
     @PutMapping
     public PersonDto editPerson(@RequestBody PersonDto person) {
         Person personEntity = DtoConverter.createPersonEntity(person);

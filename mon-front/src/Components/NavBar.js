@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import ReactSwitch from "react-switch";
 import {createContext, useState} from "react";
+import {List} from "rsuite";
 
 export const ThemeContext = createContext(null);
 
@@ -18,13 +19,17 @@ function NavBar() {
                 <Link to="/">Home</Link>
             </li>
             <li>
-                <Link to="/people">Person List</Link>
-            </li>
-            <li>
-                <Link to="/shelter">Shelter</Link>
+                <Link to="people">Person List</Link>
             </li>
             <li>
                 <Link to="shelters">Shelter List</Link>
+            </li>
+            <li>|</li>
+            <li>
+                <Link to="create-person">Create Person</Link>
+            </li>
+            <li>
+                <Link to="shelter">Shelter</Link>
             </li>
         </ul>
     </nav>;

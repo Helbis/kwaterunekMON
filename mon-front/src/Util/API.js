@@ -104,9 +104,13 @@ export const fetchAssignments = async () => {
 
 
 function handleError(error) {
-    if (error.response.status === 409) {
+    if (error.response.status === 409 ) {
+        notifyWarning(error.response.data.detail)
+    }
+    if ( error.response.status === 400) {
         notifyWarning(error.response.data.message)
-    } else {
+    }
+    else {
         notifyError(error.response.data.message)
         console.log(error)
     }

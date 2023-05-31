@@ -6,6 +6,7 @@ import ShelteringPage from "../../Pages/ShelteringPage"
 import PersonPage from "../../Pages/PersonPage";
 import {ToastContainer} from "react-toastify";
 import AssignmentsPage from "../../Pages/AssignmentsPage";
+import CreatePersonPage from "../../Pages/CreatePersonPage";
 
 export const ThemeContext = createContext(null);
 
@@ -26,6 +27,7 @@ function App() {
                     <Route path="people" element={<PersonPage/>}/>
                     <Route path="shelter" element={<ShelteringPage/>}/>
                     <Route path="shelters" element={<AssignmentsPage/>}/>
+                    <Route path="create-person" element={<CreatePersonPage/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
