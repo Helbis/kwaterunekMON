@@ -43,6 +43,39 @@ export const createPerson = async (name, surname, rank, info, telephone) => {
     }
 }
 
+export const createInstitution = async (name) => {
+    try {
+        const response = await axios.post(
+            BASE_API_URL + 'institution',
+            {name: name}
+        )
+        if (200 === response.status) {
+            notifySuccess('Institution created successfully!')
+        }
+        return response.data
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const createRoom = async (name, slots, institutionId) => {
+    try {
+        const response = await axios.post(
+            BASE_API_URL + 'room',
+            {
+                name: name,
+                slots: slots,
+                institutionId: institutionId
+            }
+        )
+        if (200 === response.status) {
+            notifySuccess('Room created successfully!')
+        }
+    } catch (error) {
+        handleError(error)
+    }
+}
+
 export const fetchInstitutionList = async () => {
     try {
         const response = await axios.get(BASE_API_URL + 'institution/all')
@@ -104,13 +137,12 @@ export const fetchAssignments = async () => {
 
 
 function handleError(error) {
-    if (error.response.status === 409 ) {
+    if (error.response.status === 409) {
         notifyWarning(error.response.data.detail)
     }
-    if ( error.response.status === 400) {
+    if (error.response.status === 400) {
         notifyWarning(error.response.data.message)
-    }
-    else {
+    } else {
         notifyError(error.response.data.message)
         console.log(error)
     }

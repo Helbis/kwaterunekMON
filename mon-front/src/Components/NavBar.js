@@ -29,6 +29,9 @@ function NavBar() {
                 <Link to="create-person">Create Person</Link>
             </li>
             <li>
+                <Link to="create-institution">Create Institution</Link>
+            </li>
+            <li>
                 <Link to="shelter">Shelter</Link>
             </li>
         </ul>
