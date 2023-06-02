@@ -53,7 +53,7 @@ function ShelteringPage() {
     function parseRoomList(roomList) {
         const parsedList = []
         for (const room of roomList) {
-            const parsedName = `${room.name}`
+            const parsedName = `${room.name} (${room.slots} slots)`
             parsedList.push({value: room.id, label: parsedName})
         }
         return parsedList

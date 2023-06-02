@@ -1,10 +1,8 @@
 package pl.lodz.edu.monshelter.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import pl.lodz.edu.monshelter.dtos.InstitutionDto;
 import pl.lodz.edu.monshelter.entities.Institution;
 import pl.lodz.edu.monshelter.services.InstitutionService;
@@ -30,7 +28,7 @@ public class InstitutionController {
     }
 
     @PostMapping()
-    public InstitutionDto createInstitution(InstitutionDto institutionDto) {
+    public InstitutionDto createInstitution(@RequestBody @Validated InstitutionDto institutionDto) {
         Institution entity = service.createInstitution(DtoConverter.createInstitutionEntity(institutionDto));
         return DtoConverter.toInstitutionDto(entity);
     }

@@ -11,7 +11,6 @@ function NewPersonForm(props) {
 
     const handleSubmit = async () => {
         await createPerson(name, surname, rank, info, telephone)
-        props.afterSubmit()
     };
 
     return (

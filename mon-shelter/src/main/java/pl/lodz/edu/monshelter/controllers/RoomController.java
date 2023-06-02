@@ -1,6 +1,8 @@
 package pl.lodz.edu.monshelter.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pl.lodz.edu.monshelter.dtos.RoomDto;
 import pl.lodz.edu.monshelter.entities.Institution;
@@ -35,7 +37,7 @@ public class RoomController {
     }
 
     @PostMapping
-    public RoomDto createRoom(RoomDto roomDto) {
+    public RoomDto createRoom(@RequestBody @Validated RoomDto roomDto) {
         Room roomEntity = DtoConverter.createRoomEntity(roomDto);
         Institution institution = institutionService.getInstitution(roomDto.getInstitutionId());
         roomEntity.setInstitution(institution);
