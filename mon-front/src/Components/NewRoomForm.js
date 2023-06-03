@@ -5,6 +5,8 @@ import {notifySuccess} from "../Util/Notifier";
 
 function NewRoomForm(props) {
 
+    // TODO: translate to PL
+
     const [institutionList, setInstitutionList] = useState([])
     const [roomList, setRoomList] = useState([])
     const [selectedInstitution, setSelectedInstitution] = useState(null)

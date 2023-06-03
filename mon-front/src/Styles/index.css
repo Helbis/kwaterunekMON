@@ -27,6 +27,19 @@
   font-weight: normal;
 }
 
+h2 {
+  font-weight: bolder;
+  display: block;
+  height: 2rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
 /* colors */
 .light {
   background-color: var(--light-mode-background);
@@ -38,14 +51,10 @@
   color: var(--dark-mode-text);
 }
 
-body {
-  margin: 0;
-  overflow: hidden;
-}
-
 /* main app */
 .App {
-  width: 100%;
+  min-width: 100%;
+  max-width: 1080px;
   min-height: 100vh;
 }
 
@@ -54,7 +63,8 @@ body {
   display: flex;
 
   min-height: 3rem;
-  width: 100%;
+  min-width: 100%;
+  max-width: 1080px;
 
   gap: 1rem;
   margin-left: 1rem;
@@ -70,7 +80,7 @@ body {
   float: right;
 }
 
-.App-header p + div {
+.App-header p+div {
   margin-right: 32px;
   margin-left: 1rem;
 }
@@ -119,7 +129,8 @@ body {
 
 /* FORM */
 .formDiv {
-  width: 450px;
+  min-width: 30%;
+  max-width: 450px;
   margin: 20px;
   padding: 20px;
   margin-left: auto;
@@ -128,11 +139,10 @@ body {
   border-radius: var(--radius);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.formDiv form {
+form {
   width: 100%;
 }
 
@@ -146,21 +156,17 @@ label {
   text-align: left;
 }
 
-input[type="text"] {
+input {
   display: block;
   width: 100%;
-  height: 2rem;
-  /*margin-left: auto;*/
-  margin-right: auto;
   margin-top: 0px;
-  margin-bottom: 0px;
   margin-bottom: 10px;
   border: none;
-  padding: 5px;
+  padding: 0.75em;
   border-radius: var(--radius);
 }
 
-/*.formDiv form */input[type="file"] {
+input[type="file"] {
   display: block;
   width: 100%;
   margin-left: auto;
@@ -173,9 +179,8 @@ input[type="text"] {
   border-radius: var(--radius);
 }
 
-/*.formDiv form*/ input[type="submit"],
-.btnSubmit
-{
+input[type="submit"],
+.btnSubmit {
   display: block;
   width: 30%;
   height: 2rem;
@@ -190,8 +195,8 @@ input[type="text"] {
   color: #fff;
 }
 
-/*.formDiv form*/ input[type="submit"]:hover,
-/*.formDiv form*/ input[type="submit"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus,
 .btnSubmit:hover,
 .btnSubmit:focus {
   background-color: var(--btn-clr-submit-hover);

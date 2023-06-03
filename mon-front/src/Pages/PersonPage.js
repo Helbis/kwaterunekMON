@@ -1,25 +1,26 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/PersonPage.css"
 import PersonTable from "../Components/PersonTable";
-import {fetchPersonList} from "../Util/API";
+import { fetchPersonList } from "../Util/API";
 
-export default function PersonPage() {
+const PersonPage = () => {
+  const [persons, setPersons] = useState([])
 
-    const [persons, setPersons] = useState([])
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  const fetchData = async () => {
+    const result = await fetchPersonList();
+    setPersons(result)
+  };
 
-    const fetchData = async () => {
-        const result = await fetchPersonList();
-        setPersons(result)
-    };
-
-    // TODO: add theme support maybe
-    return (
-        <div className={`person-page-container`}>
-            <PersonTable persons={persons}/>
-        </div>
-    )
+  // TODO: add theme support maybe
+  return (
+    <div className={`person-page-container`}>
+      <PersonTable persons={persons} />
+    </div>
+  )
 }
+
+export default PersonPage;
