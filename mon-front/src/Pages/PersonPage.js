@@ -16,8 +16,9 @@ export default function PersonPage() {
         setPersons(result)
     };
 
+    // TODO: add theme support maybe
     return (
-        <div className="person-page-container">
+        <div className={`person-page-container`}>
             <PersonTable persons={persons}/>
         </div>
     )

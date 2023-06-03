@@ -6,7 +6,6 @@ function CreateInstitutionPage(props) {
     return (
         <div>
             <NewInstitutionForm/>
-            <p>----------------------------------</p>
             <NewRoomForm/>
         </div>
     );

@@ -14,10 +14,12 @@ function NavBar() {
     };
 
     // TODO: translate to PL
+    // TODO: Why is there a vertical bar?
+
     return <nav className={`NavBar`}>
         <ul id="nav-links-list">
             <li>
-                <Link to="/">Home</Link>
+                <Link className={`navButton`} to="/">Home</Link>
             </li>
             <li>
                 <Link className={`navButton`} to="people">Person List</Link>
@@ -30,10 +32,10 @@ function NavBar() {
                 <Link className={`navButton`} to="create-person">Create Person</Link>
             </li>
             <li>
-                <Link to="create-institution">Create Institution</Link>
+                <Link className={`navButton`} to="create-institution">Create Institution</Link>
             </li>
             <li>
-                <Link to="shelter">Shelter</Link>
+                <Link className={`navButton`} to="shelter">Shelter</Link>
             </li>
         </ul>
     </nav>;

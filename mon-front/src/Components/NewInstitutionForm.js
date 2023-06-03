@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {createInstitution} from "../Util/API";
 
-function NewInstitutionForm(props) {
+const NewInstitutionForm = (props) => {
 
     const [name, setName] = useState("");
 
@@ -10,15 +10,21 @@ function NewInstitutionForm(props) {
     };
 
     return (
-        <div id="new-intitution-form">
-            <p>Create new institution:</p>
+        <div className={`formDiv`} id="new-intitution-form">
+            <form>
+            <h2>Create new institution:</h2>
+            <label for="name">Name</label>
             <input
+                name="name"
                 placeholder="Name"
                 value={name}
                 onChange={event => setName(event.target.value)}/>
-            <button
-                onClick={handleSubmit}>Submit
-            </button>
+            <input
+                type="submit"
+                className={`btnSubmit`}
+                onClick={handleSubmit}>
+            </input>
+            </form>
         </div>
     );
 }

@@ -4,9 +4,7 @@ import NewPersonForm from "../Components/NewPersonForm";
 function CreatePersonPage(props) {
     return (
         <div>
-            <div>
-                <NewPersonForm/>
-            </div>
+            <NewPersonForm/>
         </div>
     );
 }

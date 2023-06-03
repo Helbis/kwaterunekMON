@@ -2,7 +2,7 @@ const InputForm = () => {
     // TODO: translate to PL
     
     return (
-        <div className="main-form">
+        <div className="formDiv">
             <form>
                 <label for="1person">Number of 1 person rooms</label>
                 <input type="text" id="1person" placeholder="1 person rooms"></input>
