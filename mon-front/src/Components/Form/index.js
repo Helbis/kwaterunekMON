@@ -1,4 +1,6 @@
 const InputForm = () => {
+    // TODO: translate to PL
+    
     return (
         <div className="main-form">
             <form>
@@ -14,7 +16,7 @@ const InputForm = () => {
                 <label for="rooms">Number of available rooms</label>
                 <input type="text" id="rooms" placeholder="rooms"></input>
 
-                <label for="file">Choose file witf soldiers (.csv, .xlsx)</label>
+                <label for="file">Choose file with soldiers (.csv, .xlsx)</label>
                 <input type="file" id="file" name="file" accept=".csv , .xlsx"/>
 
                 <input type="submit"></input>

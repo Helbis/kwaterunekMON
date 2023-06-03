@@ -13,20 +13,21 @@ function NavBar() {
         setTheme((curr) => (curr === "light" ? "dark" : "light"));
     };
 
-    return <nav>
+    // TODO: translate to PL
+    return <nav className={`NavBar`}>
         <ul id="nav-links-list">
             <li>
                 <Link to="/">Home</Link>
             </li>
             <li>
-                <Link to="people">Person List</Link>
+                <Link className={`navButton`} to="people">Person List</Link>
             </li>
             <li>
-                <Link to="shelters">Shelter List</Link>
+                <Link className={`navButton`} to="shelters">Shelter List</Link>
             </li>
             <li>|</li>
             <li>
-                <Link to="create-person">Create Person</Link>
+                <Link className={`navButton`} to="create-person">Create Person</Link>
             </li>
             <li>
                 <Link to="create-institution">Create Institution</Link>
