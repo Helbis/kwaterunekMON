@@ -18,7 +18,7 @@ public class MonShelterApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/**").allowedOrigins("http://localhost:3000");
+				registry.addMapping("/**").allowedOrigins("https://mon-front.onrender.com");
 			}
 		};
 	}
