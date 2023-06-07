@@ -20,19 +20,6 @@ public class PersonService {
     @Autowired
     public PersonService(PersonRepository repository) {
         this.repository = repository;
-
-        List<Person> people = List.of(
-                new Person("Jacek", "Grudzień", "Generał", null, "543-543-543", true),
-                new Person("Beata", "Wąs", "Cywil", null, null, true),
-                new Person("Monika", "Piórko", "Cywil", "Kucharka", null, true),
-                new Person("Adam", "Nowak", "Sierżant", null, null, true),
-                new Person("Tom", "Binary", "Pułkownik", "Preferuje mieszkać sam", null, true),
-                new Person("Piotr", "Salko", "Generał", null, null, true),
-                new Person("Anna", "Piątek", "Cywil", "Higienistka", "928-182-321", true),
-                new Person("Ludwik", "Nowakowski", "Cywil", "Koserwator budynku", null, true),
-                new Person("Bob", "Nieaktywny", null, "Wyjechał z kraju", null, false)
-        );
-        repository.saveAll(people);
     }
 
     public List<Person> getPeopleList(boolean includeInactive) {
@@ -59,7 +46,8 @@ public class PersonService {
         if (person.getTelephone() != null) {
             Optional<Person> expected = repository.findByTelephone(person.getTelephone());
             if (expected.isPresent()) {
-                throw new ConflictException(String.format("Person with given telephone: %s already exists.", person.getTelephone()));
+                throw new ConflictException(
+                        String.format("Person with given telephone: %s already exists.", person.getTelephone()));
             }
         }
         return repository.save(person);
@@ -83,9 +71,11 @@ public class PersonService {
 
     public void deletePerson(Long id) {
         Person person = getPersonWithId(id);
-        boolean conflicted = person.getAssignmentList().stream().anyMatch(ass -> ass.getToTime().isAfter(ZonedDateTime.now()) && ass.isActive());
+        boolean conflicted = person.getAssignmentList().stream()
+                .anyMatch(ass -> ass.getToTime().isAfter(ZonedDateTime.now()) && ass.isActive());
         if (conflicted) {
-            throw new ConflictException("Person with id %s has planned assignments in future, cannot be deleted.".formatted(id));
+            throw new ConflictException(
+                    "Person with id %s has planned assignments in future, cannot be deleted.".formatted(id));
         }
         repository.deleteById(id);
     }
