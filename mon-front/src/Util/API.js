@@ -1,8 +1,8 @@
 import axios from "axios";
-import {notifyError, notifySuccess, notifyWarning} from "./Notifier";
+import { notifyError, notifySuccess, notifyWarning } from "./Notifier";
 
 
-const BASE_API_URL = 'http://localhost:8080/api/';
+const BASE_API_URL = 'https://mon-shelter.onrender.com/api/';
 
 export const fetchPersonList = async () => {
     try {
@@ -47,7 +47,7 @@ export const createInstitution = async (name) => {
     try {
         const response = await axios.post(
             BASE_API_URL + 'institution',
-            {name: name}
+            { name: name }
         )
         if (200 === response.status) {
             notifySuccess('Institution created successfully!')
