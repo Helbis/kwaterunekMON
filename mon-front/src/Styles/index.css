@@ -192,9 +192,8 @@ input[type="tel"] {
 }
 
 input:invalid {
-  outline: 2px solid red;
-  color: red;
-  background-color: red;
+  outline: 4px dashed red;
+  outline-offset: 4px;
 }
 
 input::placeholder {

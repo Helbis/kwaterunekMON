@@ -17,6 +17,9 @@ const NewInstitutionForm = (props) => {
         <input
           name="name"
           type="text"
+          pattern="[A-Za-z]+"
+          maxLength="100"
+          title="Proszę użyć znaków alfabetu"
           placeholder="Hotel pod jabłonią"
           value={name}
           onChange={event => setName(event.target.value)} />

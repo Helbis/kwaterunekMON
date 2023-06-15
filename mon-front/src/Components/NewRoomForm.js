@@ -69,6 +69,9 @@ const NewRoomForm = (props) => {
           type="text"
           name="name"
           placeholder="Jan"
+          pattern="[A-Za-z]+"
+          title="Proszę użyć znaków alfabetu"
+          maxLength="100"
           value={roomName}
           onChange={event => setRoomName(event.target.value)} />
 
@@ -78,12 +81,14 @@ const NewRoomForm = (props) => {
           placeholder="5"
           value={roomSlots}
           type="number"
+          title="Proszę wpisać liczbę od 0 do 500"
+          min="0" max="500"
           onChange={event => setRoomSlots(parseInt(event.target.value))} />
 
         <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
-            Utwórz pokój
+          Utwórz pokój
         </button>
 
         <div className={`institution-rooms`}>
