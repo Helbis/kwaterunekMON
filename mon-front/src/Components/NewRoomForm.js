@@ -88,7 +88,7 @@ const NewRoomForm = (props) => {
         <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
-          Utwórz pokój
+            Utwórz pokój
         </button>
 
         <div className={`institution-rooms`}>

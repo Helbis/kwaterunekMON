@@ -11,7 +11,7 @@ const NewPersonForm = (props) => {
   const handleSubmit = async () => {
     await createPerson(name, surname, rank, info, telephone)
   };
-// TODO: text for button
+
   return (
     <div className={`formDiv`}>
       <form id="new-person-form">

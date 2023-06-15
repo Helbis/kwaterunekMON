@@ -1,6 +1,5 @@
 const InputForm = () => {
 
-  // TODO: text inside the button
   return (
     <div className="formDiv">
       <form>
