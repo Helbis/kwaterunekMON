@@ -1,134 +1,134 @@
 import Select from 'react-select'
-import {useEffect, useRef, useState} from "react";
-import {fetchInstitutionList, fetchPersonList, fetchRoomListByInstitution, postAssignment} from "../Util/API";
+import { useEffect, useRef, useState } from "react";
+import { fetchInstitutionList, fetchPersonList, fetchRoomListByInstitution, postAssignment } from "../Util/API";
 import '../Styles/ShelteringPage.css'
-import {DateRangePicker} from 'rsuite';
+import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
 import 'react-toastify/dist/ReactToastify.css';
-import {prettyDate} from "../Util/Parser";
+import { prettyDate } from "../Util/Parser";
 
-function ShelteringPage() {
+const ShelteringPage = () => {
 
-    const [personList, setPersonList] = useState([])
-    const [institutionList, setInstitutionList] = useState([])
-    const [roomList, setRoomList] = useState([])
+  const [personList, setPersonList] = useState([])
+  const [institutionList, setInstitutionList] = useState([])
+  const [roomList, setRoomList] = useState([])
 
-    const [selectedPerson, setSelectedPerson] = useState('')
-    const [selectedRoom, setSelectedRoom] = useState('')
-    const [selectedDate, setSelectedDate] = useState([new Date(), new Date()]);
+  const [selectedPerson, setSelectedPerson] = useState('')
+  const [selectedRoom, setSelectedRoom] = useState('')
+  const [selectedDate, setSelectedDate] = useState([new Date(), new Date()]);
 
-    const selectRoomRef = useRef();
+  const selectRoomRef = useRef();
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    const fetchData = async () => {
-        const fetchedPersonList = await fetchPersonList();
-        setPersonList(parsePersonList(fetchedPersonList))
+  const fetchData = async () => {
+    const fetchedPersonList = await fetchPersonList();
+    setPersonList(parsePersonList(fetchedPersonList))
 
-        const fetchedInstitutionList = await fetchInstitutionList()
-        setInstitutionList(parseInstitutionList(fetchedInstitutionList))
+    const fetchedInstitutionList = await fetchInstitutionList()
+    setInstitutionList(parseInstitutionList(fetchedInstitutionList))
 
-    };
+  };
 
-    const parsePersonList = (personList) => {
-        const parsedList = []
-        for (const person of personList) {
-            const parsedName = `${person.name} ${person.surname}`
-            parsedList.push({value: person.id, label: parsedName})
-        }
-        return parsedList
+  const parsePersonList = (personList) => {
+    const parsedList = []
+    for (const person of personList) {
+      const parsedName = `${person.name} ${person.surname}`
+      parsedList.push({ value: person.id, label: parsedName })
     }
+    return parsedList
+  }
 
-    const parseInstitutionList = (institutionList) => {
-        const parsedList = []
-        for (const institution of institutionList) {
-            const parsedName = `${institution.name}`
-            parsedList.push({value: institution.id, label: parsedName})
-        }
-        return parsedList
-    };
-
-    function parseRoomList(roomList) {
-        const parsedList = []
-        for (const room of roomList) {
-            const parsedName = `${room.name} (${room.slots} slots)`
-            parsedList.push({value: room.id, label: parsedName})
-        }
-        return parsedList
+  const parseInstitutionList = (institutionList) => {
+    const parsedList = []
+    for (const institution of institutionList) {
+      const parsedName = `${institution.name}`
+      parsedList.push({ value: institution.id, label: parsedName })
     }
+    return parsedList
+  };
 
-    async function handleInstitutionChanged(newValue) {
-        selectRoomRef.current.clearValue()
-        const result = await fetchRoomListByInstitution(newValue.value)
-        setRoomList(parseRoomList(result))
+  function parseRoomList(roomList) {
+    const parsedList = []
+    for (const room of roomList) {
+      const parsedName = `${room.name} (${room.slots} slots)`
+      parsedList.push({ value: room.id, label: parsedName })
     }
+    return parsedList
+  }
 
-    function printValues() {
-        console.log(`Selected Person: ${selectedPerson}`)
-        console.log(`Selected Room: ${selectedRoom}`)
-        console.log(`Selected Date: ${selectedDate}`)
-        console.log(`ISO date: ${selectedDate[0].toISOString()}`)
+  async function handleInstitutionChanged(newValue) {
+    selectRoomRef.current.clearValue()
+    const result = await fetchRoomListByInstitution(newValue.value)
+    setRoomList(parseRoomList(result))
+  }
+
+  function printValues() {
+    console.log(`Selected Person: ${selectedPerson}`)
+    console.log(`Selected Room: ${selectedRoom}`)
+    console.log(`Selected Date: ${selectedDate}`)
+    console.log(`ISO date: ${selectedDate[0].toISOString()}`)
+  }
+
+  function formatDateRange(date) {
+    if (date == null || date[0] == null || date[1] == null) {
+      return ''
     }
+    return `${prettyDate(date[0])} - ${prettyDate(date[1])}`
+  }
 
-    function formatDateRange(date) {
-        if (date == null || date[0] == null || date[1] == null) {
-            return ''
-        }
-        return `${prettyDate(date[0])} - ${prettyDate(date[1])}`
+  function submitAssignment() {
+    postAssignment(selectedDate[0], selectedDate[1], selectedPerson, selectedRoom)
+  }
+
+  function handleRoomChanged(newValue) {
+    if (newValue != null) {
+      setSelectedRoom(newValue.value)
+    } else {
+      setSelectedRoom('')
     }
+  }
 
-    function submitAssignment() {
-        postAssignment(selectedDate[0], selectedDate[1], selectedPerson, selectedRoom)
-    }
+  return (
+    <div className='sheltering-page-container'>
+      <div className='left-pane'>
+        <p>DEBUG LEFT PANE</p>
+        {/*reference: https://rsuitejs.com/components/date-range-picker/    */}
+        <DateRangePicker
+          placeholder="Date Range"
+          format="dd-MM-yyyy"
+          value={selectedDate}
+          onChange={newVal => setSelectedDate(newVal)}
+          id='date-range-picker'
+        />
+        <Select
+          options={personList}
+          onChange={newValue => setSelectedPerson(newValue.value)}
+        />
+        <Select
+          options={institutionList}
+          onChange={newValue => handleInstitutionChanged(newValue)}
+        />
+        <Select
+          options={roomList}
+          onChange={newValue => handleRoomChanged(newValue)}
+          ref={selectRoomRef}
+        />
 
-    function handleRoomChanged(newValue) {
-        if (newValue != null) {
-            setSelectedRoom(newValue.value)
-        } else {
-            setSelectedRoom('')
-        }
-    }
+        <input type="submit" className={`btnSubmit`} onClick={event => printValues()}></input>
+        <input type="submit" className={`btnSubmit`} onClick={event => submitAssignment()}></input>
 
-    return (
-        <div className='sheltering-page-container'>
-            <div className='left-pane'>
-                <p>DEBUG LEFT PANE</p>
-                {/*reference: https://rsuitejs.com/components/date-range-picker/    */}
-                <DateRangePicker
-                    placeholder="Date Range"
-                    format="dd-MM-yyyy"
-                    value={selectedDate}
-                    onChange={newVal => setSelectedDate(newVal)}
-                    id='date-range-picker'
-                />
-                <Select
-                    options={personList}
-                    onChange={newValue => setSelectedPerson(newValue.value)}
-                />
-                <Select
-                    options={institutionList}
-                    onChange={newValue => handleInstitutionChanged(newValue)}
-                />
-                <Select
-                    options={roomList}
-                    onChange={newValue => handleRoomChanged(newValue)}
-                    ref={selectRoomRef}
-                />
-
-                <input type="submit" className={`btnSubmit`} onClick={event => printValues()}></input>
-                <input type="submit" className={`btnSubmit`} onClick={event => submitAssignment()}></input>
-
-            </div>
-            <div className='right-pane'>
-                <p>DEBUG RIGHT PANE</p>
-                <p>Selected person id: {selectedPerson}</p>
-                <p>Selected room id: {selectedRoom}</p>
-                <p>Selected date: {formatDateRange(selectedDate)}</p>
-            </div>
-        </div>
-    )
+      </div>
+      <div className='right-pane'>
+        <p>DEBUG RIGHT PANE</p>
+        <p>Selected person id: {selectedPerson}</p>
+        <p>Selected room id: {selectedRoom}</p>
+        <p>Selected date: {formatDateRange(selectedDate)}</p>
+      </div>
+    </div>
+  )
 }
 
 export default ShelteringPage;

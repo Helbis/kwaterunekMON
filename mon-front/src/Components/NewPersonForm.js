@@ -12,13 +12,12 @@ const NewPersonForm = (props) => {
     await createPerson(name, surname, rank, info, telephone)
   };
 
-  // TODO: translate to PL
   return (
     <div className={`formDiv`}>
       <form id="new-person-form">
-        <h2>Create new person</h2>
+        <h2>Dodaj nową osobę</h2>
 
-        <label for="name">First name</label>
+        <label for="name">Pierwsze imię</label>
         <input
           type="text"
           name="name"
@@ -26,7 +25,7 @@ const NewPersonForm = (props) => {
           value={name}
           onChange={event => setName(event.target.value)} />
 
-        <label for="surname">Surname</label>
+        <label for="surname">Nazwisko</label>
         <input
           type="text"
           name="surname"
@@ -35,7 +34,7 @@ const NewPersonForm = (props) => {
           onChange={event => setSurname(event.target.value)}
         />
 
-        <label for="rank">Rank</label>
+        <label for="rank">Ranga</label>
         <input
           type="text"
           name="rank"
@@ -43,7 +42,7 @@ const NewPersonForm = (props) => {
           value={rank}
           onChange={event => setRank(event.target.value)} />
 
-        <label for="telephone">Telephone</label>
+        <label for="telephone">Telefon</label>
         <input
           type="text"
           name="telephone"

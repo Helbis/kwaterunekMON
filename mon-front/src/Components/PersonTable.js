@@ -6,9 +6,9 @@ class PersonTable extends Component {
       <table id="person-table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Rank</th>
-            <th>Telephone</th>
+            <th>Godność</th>
+            <th>Ranga</th>
+            <th>Telefon</th>
             <th>Info</th>
           </tr>
         </thead>
