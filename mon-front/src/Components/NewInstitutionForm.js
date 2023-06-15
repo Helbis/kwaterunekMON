@@ -12,7 +12,7 @@ const NewInstitutionForm = (props) => {
   return (
     <div className={`formDiv`} id="new-intitution-form">
       <form>
-        <h2>Create new institution:</h2>
+        <h2>Utwórz nową instytucję:</h2>
         <label for="name">Name</label>
         <input
           name="name"
