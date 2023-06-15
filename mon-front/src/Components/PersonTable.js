@@ -6,10 +6,10 @@ class PersonTable extends Component {
       <table id="person-table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Rank</th>
-            <th>Telephone</th>
-            <th>Info</th>
+            <th>Imię i Nazwisko</th>
+            <th>Ranga</th>
+            <th>Numer Telefonu</th>
+            <th>Dodatkowe Informacje</th>
           </tr>
         </thead>
         <tbody>

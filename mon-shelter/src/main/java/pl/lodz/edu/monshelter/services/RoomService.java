@@ -29,7 +29,7 @@ public class RoomService {
 
     public Room getRoomWithId(Long roomId) {
         return roomRepository.findById(roomId).orElseThrow(
-                () -> new NotFoundException(String.format("Room with given id: %s not found.", roomId)));
+                () -> new NotFoundException(String.format("Pokój o ID: %s nie odnaleziony.", roomId)));
     }
 
     public List<Room> getRoomList(Long institutionId) {

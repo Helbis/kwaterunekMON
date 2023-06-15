@@ -18,7 +18,7 @@ const Layout = () => {
       <div className={`App ${theme}`} id={theme}>
         <div className={`App-header ${theme}`}>
           <NavBar />
-          <p>Dark mode</p>
+          <p>Tryb Ciemny</p>
           <ReactSwitch onChange={toggleTheme} checked={theme === "dark"} />
         </div>
         <div className={`App-content ${theme}`}>

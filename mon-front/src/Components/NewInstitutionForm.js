@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
-import { createInstitution } from "../Util/API";
+import React, {useState} from 'react';
+import {createInstitution} from "../Util/API";
 
 const NewInstitutionForm = (props) => {
 
-  const [name, setName] = useState("");
+    const [name, setName] = useState("");
 
-  const handleSubmit = async () => {
-    await createInstitution(name)
-  };
+    const handleSubmit = async () => {
+        await createInstitution(name)
+    };
 
-  return (
-    <div className={`formDiv`} id="new-intitution-form">
-      <form>
-        <h2>Create new institution:</h2>
-        <label for="name">Name</label>
-        <input
-          name="name"
-          placeholder="Name"
-          value={name}
-          onChange={event => setName(event.target.value)} />
-        <input
-          type="submit"
-          className={`btnSubmit`}
-          onClick={handleSubmit}>
-        </input>
-      </form>
-    </div>
-  );
+    return (
+        <div className={`formDiv`} id="new-intitution-form">
+            <h2>Dodaj nową instytucję:</h2>
+            <label for="name">*Nazwa</label>
+            <input
+                name="name"
+                placeholder="Hotel pod jabłonią"
+                value={name}
+                onChange={event => setName(event.target.value)}/>
+            <button
+                className={`btnSubmit`}
+                onClick={handleSubmit}>
+                Zatwiedź
+            </button>
+        </div>
+    );
 }
 
 export default NewInstitutionForm;

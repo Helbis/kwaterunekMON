@@ -9,8 +9,8 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class InstitutionDto extends AbstractDto {
 
-    @NotBlank
-    @Size(min = 3, message = "Institution name must have at least 3 characters!")
+    @NotBlank(message = "Nazwa instytucji nie może być pusta")
+    @Size(min = 3, message = "Nazwa Instytucji musi mieć conajmniej 3 znaki")
     private String name;
 
     public InstitutionDto(Long id, String name) {

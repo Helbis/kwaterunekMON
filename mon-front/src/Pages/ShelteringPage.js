@@ -7,7 +7,7 @@ import 'rsuite/dist/rsuite-no-reset.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import {prettyDate} from "../Util/Parser";
 
-function ShelteringPage() {
+const ShelteringPage = () => {
 
     const [personList, setPersonList] = useState([])
     const [institutionList, setInstitutionList] = useState([])
@@ -65,12 +65,6 @@ function ShelteringPage() {
         setRoomList(parseRoomList(result))
     }
 
-    function printValues() {
-        console.log(`Selected Person: ${selectedPerson}`)
-        console.log(`Selected Room: ${selectedRoom}`)
-        console.log(`Selected Date: ${selectedDate}`)
-        console.log(`ISO date: ${selectedDate[0].toISOString()}`)
-    }
 
     function formatDateRange(date) {
         if (date == null || date[0] == null || date[1] == null) {
@@ -92,41 +86,34 @@ function ShelteringPage() {
     }
 
     return (
-        <div className='sheltering-page-container'>
-            <div className='left-pane'>
-                <p>DEBUG LEFT PANE</p>
-                {/*reference: https://rsuitejs.com/components/date-range-picker/    */}
-                <DateRangePicker
-                    placeholder="Date Range"
-                    format="dd-MM-yyyy"
-                    value={selectedDate}
-                    onChange={newVal => setSelectedDate(newVal)}
-                    id='date-range-picker'
-                />
-                <Select
-                    options={personList}
-                    onChange={newValue => setSelectedPerson(newValue.value)}
-                />
-                <Select
-                    options={institutionList}
-                    onChange={newValue => handleInstitutionChanged(newValue)}
-                />
-                <Select
-                    options={roomList}
-                    onChange={newValue => handleRoomChanged(newValue)}
-                    ref={selectRoomRef}
-                />
+        <div className='formDiv'>
 
-                <input type="submit" className={`btnSubmit`} onClick={event => printValues()}></input>
-                <input type="submit" className={`btnSubmit`} onClick={event => submitAssignment()}></input>
+            {/*reference: https://rsuitejs.com/components/date-range-picker/    */}
+            <DateRangePicker
+                placeholder="Wybierz przedział..."
+                format="dd-MM-yyyy"
+                value={selectedDate}
+                onChange={newVal => setSelectedDate(newVal)}
+                id='date-range-picker'
+            />
+            <Select
+                options={personList}
+                placeholder={'Wybierz osobę...'}
+                onChange={newValue => setSelectedPerson(newValue.value)}
+            />
+            <Select
+                options={institutionList}
+                placeholder={'Wybierz instytucję...'}
+                onChange={newValue => handleInstitutionChanged(newValue)}
+            />
+            <Select
+                options={roomList}
+                placeholder={'Wybierz pokój...'}
+                onChange={newValue => handleRoomChanged(newValue)}
+                ref={selectRoomRef}
+            />
+            <button className={`btnSubmit`} onClick={event => submitAssignment()}>Zatwierdź</button>
 
-            </div>
-            <div className='right-pane'>
-                <p>DEBUG RIGHT PANE</p>
-                <p>Selected person id: {selectedPerson}</p>
-                <p>Selected room id: {selectedRoom}</p>
-                <p>Selected date: {formatDateRange(selectedDate)}</p>
-            </div>
         </div>
     )
 }

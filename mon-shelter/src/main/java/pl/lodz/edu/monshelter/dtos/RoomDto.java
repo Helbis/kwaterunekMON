@@ -11,17 +11,17 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 public class RoomDto extends AbstractDto {
 
-    @NotBlank
-    @Size(min = 2, message = "Room name must have at least 2 characters!")
+    @NotBlank(message = "Nazwa pokoju nie może być pusta")
+    @Size(min = 2, message = "Nazwa pokoju powinna mieć conajmniej 2 znaki")
     private String name;
 
-    @NotNull(message = "Provide slots number!")
-    @Min(value = 1,message = "Room must have at least 1 slot!")
+    @NotNull(message = "Podaj liczbę miejsc")
+    @Min(value = 1,message = "Pokój musi mieć przynajmniej jedno miejsce")
     private int slots;
 
     private int occupation;
 
-    @NotNull(message = "Provide institution id!")
+    @NotNull(message = "Nie podano ID instytucji")
     private Long institutionId;
 
     public RoomDto(Long id, String name, int slots, Long institutionId) {

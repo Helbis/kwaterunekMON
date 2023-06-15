@@ -27,7 +27,7 @@ public class AssignmentService {
     public Assignment createAssignment(Assignment assignment) {
         // Check if person is active
         if (!assignment.getPerson().isActive()) {
-            throw new ConflictException("User with id %s is inactive.".formatted(assignment.getPerson().getId()));
+            throw new ConflictException("Użytkownik o ID %s jest nieaktywny.".formatted(assignment.getPerson().getId()));
         }
 
         // Get all assignments conflicting with new assignment
@@ -36,7 +36,7 @@ public class AssignmentService {
                 .filter(ass -> ass.isActive() && assignmentsConflicts(ass, assignment)).count();
         if (assignment.getRoom().getSlots() <= conflictedAssignments) {
             throw new ConflictException(
-                    "Room with id %s have not enough slots in given period.".formatted(assignment.getRoom().getId()));
+                    "Pokój o ID %s ma niewystarczającą ilość miejsc w danym okresie.".formatted(assignment.getRoom().getId()));
         }
         return assignmentRepository.save(assignment);
     }

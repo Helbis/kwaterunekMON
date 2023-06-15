@@ -8,7 +8,7 @@ import {
 import {prettyDate} from "../Util/Parser";
 import '../Styles/AssignmentsPage.css'
 
-function AssignmentsPage(props) {
+const AssignmentsPage = (props) => {
 
     const [assignments, setAssignments] = useState([])
     const [persons, setPersons] = useState([])
@@ -27,7 +27,6 @@ function AssignmentsPage(props) {
     };
 
     useEffect(() => {
-
         fetchData();
     }, []);
 
@@ -66,11 +65,11 @@ function AssignmentsPage(props) {
             <table id='assignments-table'>
                 <thead>
                 <tr>
-                    <th>Person</th>
-                    <th>Institution</th>
-                    <th>Room</th>
-                    <th>From</th>
-                    <th>To</th>
+                    <th>Osoba</th>
+                    <th>Instytucja</th>
+                    <th>Pokój</th>
+                    <th>Zameldowany od</th>
+                    <th>Zameldowany do</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -88,7 +87,7 @@ function AssignmentsPage(props) {
                 }
                 </tbody>
             </table>
-            <input type="submit" onClick={fetchData}></input>
+            <button className={`btnSubmit`} onClick={fetchData}>Odśwież</button>
         </div>
     )
 }
