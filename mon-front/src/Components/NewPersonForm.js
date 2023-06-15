@@ -11,7 +11,7 @@ const NewPersonForm = (props) => {
   const handleSubmit = async () => {
     await createPerson(name, surname, rank, info, telephone)
   };
-
+// TODO: text for button
   return (
     <div className={`formDiv`}>
       <form id="new-person-form">
@@ -21,7 +21,7 @@ const NewPersonForm = (props) => {
         <input
           type="text"
           name="name"
-          placeholder="Name"
+          placeholder="Jan"
           value={name}
           onChange={event => setName(event.target.value)} />
 
@@ -29,7 +29,7 @@ const NewPersonForm = (props) => {
         <input
           type="text"
           name="surname"
-          placeholder="Surname"
+          placeholder="Kowalski"
           value={surname}
           onChange={event => setSurname(event.target.value)}
         />
@@ -38,7 +38,7 @@ const NewPersonForm = (props) => {
         <input
           type="text"
           name="rank"
-          placeholder="Rank"
+          placeholder="Szeregowy"
           value={rank}
           onChange={event => setRank(event.target.value)} />
 
@@ -46,7 +46,7 @@ const NewPersonForm = (props) => {
         <input
           type="text"
           name="telephone"
-          placeholder="Telephone"
+          placeholder="+48654876999"
           value={telephone}
           onChange={event => setTelephone(event.target.value)}
         />
@@ -55,14 +55,13 @@ const NewPersonForm = (props) => {
         <input
           type="text"
           name="info"
-          placeholder="Info"
+          placeholder="Dodatkowe informacje"
           value={info}
           onChange={event => setInfo(event.target.value)} />
-        <input
-          type="submit"
+        <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
-        </input>
+        </button>
       </form>
     </div>
   );

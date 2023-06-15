@@ -60,7 +60,7 @@ const AssignmentsPage = (props) => {
       }
     }
   }
-// FIXME: finalize translation to PL!
+  // FIXME: finalize translation to PL!
   return (
     <div>
       <table id='assignments-table'>
@@ -88,7 +88,7 @@ const AssignmentsPage = (props) => {
           }
         </tbody>
       </table>
-      <input type="submit" onClick={fetchData}></input>
+      <button onClick={fetchData}></button>
     </div>
   )
 }

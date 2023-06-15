@@ -67,22 +67,21 @@ const NewRoomForm = (props) => {
         <label for="name">Nazwa</label>
         <input
           name="name"
-          placeholder="Name"
+          placeholder="Jan"
           value={roomName}
           onChange={event => setRoomName(event.target.value)} />
         <label for="Slots">Miejsca</label>
         <input
           name="Slots"
-          placeholder="Slots"
+          placeholder="5"
           value={roomSlots}
           type="number"
           onChange={event => setRoomSlots(parseInt(event.target.value))} />
-        <input
-          type="submit"
+        <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
-        </input>
-        <p>Institution's rooms:</p>
+        </button>
+        <p>Pokoje instytucji:</p>
         <ul>
           {roomList.map(room =>
             <li key={room.value}>{room.label}</li>
