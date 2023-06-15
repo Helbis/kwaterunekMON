@@ -19,23 +19,23 @@ const NavBar = () => {
   return <nav className={`NavBar`}>
     <ul id="nav-links-list">
       <li>
-        <Link className={`navButton`} to="/">Home</Link>
+        <Link className={`navButton`} to="/">Strona Główna</Link>
       </li>
       <li>
-        <Link className={`navButton`} to="people">Person List</Link>
+        <Link className={`navButton`} to="people">Osoby</Link>
       </li>
       <li>
-        <Link className={`navButton`} to="shelters">Shelter List</Link>
+        <Link className={`navButton`} to="shelters">Zameldowania</Link>
       </li>
       <li>|</li>
       <li>
-        <Link className={`navButton`} to="create-person">Create Person</Link>
+        <Link className={`navButton`} to="create-person">Dodaj Osobę</Link>
       </li>
       <li>
-        <Link className={`navButton`} to="create-institution">Create Institution</Link>
+        <Link className={`navButton`} to="create-institution">Dodaj Instytucję/Pokój</Link>
       </li>
       <li>
-        <Link className={`navButton`} to="shelter">Shelter</Link>
+        <Link className={`navButton`} to="shelter">Zamelduj</Link>
       </li>
     </ul>
   </nav>;

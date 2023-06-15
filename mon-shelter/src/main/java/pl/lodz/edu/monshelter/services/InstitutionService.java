@@ -28,14 +28,14 @@ public class InstitutionService {
     public Institution getInstitution(Long id) {
         Optional<Institution> institution = repository.findById(id);
         return institution.orElseThrow(
-                () -> new NotFoundException(String.format("Institution with given id: %s do not exists!", id)));
+                () -> new NotFoundException(String.format("Instytucja o ID: %s nie istnieje!", id)));
     }
 
     public Institution createInstitution(Institution institutionEntity) {
         Optional<Institution> optional = repository.findByName(institutionEntity.getName());
         if (optional.isPresent()) {
             throw new ConflictException(
-                    String.format("Institution with given name: %s already exists.", institutionEntity.getName()));
+                    String.format("Instytucja o nazwie: %s już istnieje.", institutionEntity.getName()));
         }
         return repository.save(institutionEntity);
     }

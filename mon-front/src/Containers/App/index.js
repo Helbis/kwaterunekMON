@@ -11,7 +11,7 @@ import CreateInstitutionPage from "../../Pages/CreateInstitutionPage";
 
 export const ThemeContext = createContext(null);
 
-function App() {
+const App =() => {
 
     const [theme, setTheme] = useState("dark");
 

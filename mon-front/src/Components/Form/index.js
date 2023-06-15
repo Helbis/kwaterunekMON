@@ -1,27 +1,27 @@
 const InputForm = () => {
-  // TODO: translate to PL
+    // TODO: translate to PL
 
-  return (
-    <div className="formDiv">
-      <form>
-        <label for="1person">Number of 1 person rooms</label>
-        <input type="text" id="1person" placeholder="1 person rooms"></input>
+    return (
+        <div className="formDiv">
+            <form>
+                <label htmlFor="1person">Ilość 1 osobowych pokoi</label>
+                <input type="text" id="1person" placeholder="12"></input>
 
-        <label for="2people">Number of 2 people rooms</label>
-        <input type="text" id="2people" placeholder="2 people rooms"></input>
+                <label htmlFor="2people">Ilość 2 osobowych pokoi</label>
+                <input type="text" id="2people" placeholder="42"></input>
 
-        <label for="3people">Number of 3 people rooms</label>
-        <input type="text" id="3people" placeholder="3 people rooms"></input>
+                <label htmlFor="3people">Ilość 3 osobowych pokoi</label>
+                <input type="text" id="3people" placeholder="5"></input>
 
-        <label for="rooms">Number of available rooms</label>
-        <input type="text" id="rooms" placeholder="rooms"></input>
+                <label htmlFor="rooms">Ilość wolnych pokojów</label>
+                <input type="text" id="rooms" placeholder="8"></input>
 
-        <label for="file">Choose file with soldiers (.csv, .xlsx)</label>
-        <input type="file" id="file" name="file" accept=".csv , .xlsx" />
+                <label htmlFor="file">Wybierz plik z listą żołnierzy (.csv, .xlsx)</label>
+                <input type="file" id="file" name="file" accept=".csv , .xlsx"/>
 
-        <input type="submit"></input>
-      </form>
-    </div>
-  );
+                <button className={`btnSubmit`}></button>
+            </form>
+        </div>
+    );
 }
 export default InputForm;

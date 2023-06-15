@@ -22,12 +22,12 @@ Sample JSON output
 @EqualsAndHashCode(callSuper = true)
 public class PersonDto extends AbstractDto {
 
-    @NotBlank(message = "Name must be provided!")
-    @Size(min = 2, message = "Name should have at least 2 characters!")
+    @NotBlank(message = "Imię nie może być puste")
+    @Size(min = 2, message = "Imię powinno mieć conajmniej 2 znaki")
     private String name;
 
-    @NotBlank(message = "Surname must be provided!")
-    @Size(min = 2, message = "Surname should have at least 2 characters!")
+    @NotBlank(message = "Nazwisko nie może być puste")
+    @Size(min = 2, message = "Nazwisko powinno mieć conajmniej 2 znaki")
     private String surname;
 
     // Nullable
@@ -37,7 +37,7 @@ public class PersonDto extends AbstractDto {
     private String info;
 
     @Pattern(regexp = "^(\\+[0-9]{2})?[\\s]?[0-9]{3}[-\\s]?[0-9]{3}[-\\s]?[0-9]{3}$",
-            message = "The number format must be like 111-222-333 or +48 111-222-333")
+            message = "Podaj numer w formacie: 111-222-333 lub +48 111-222-333")
     private String telephone;
 
     // Nullable
