@@ -8,20 +8,23 @@ const NewInstitutionForm = (props) => {
   const handleSubmit = async () => {
     await createInstitution(name)
   };
-  // TODO: text for button
+
   return (
     <div className={`formDiv`} id="new-intitution-form">
       <form>
-        <h2>Utwórz nową instytucję:</h2>
+        <h2>Utwórz nową instytucję</h2>
         <label for="name">Nazwa</label>
         <input
           name="name"
+          type="text"
           placeholder="Hotel pod jabłonią"
           value={name}
           onChange={event => setName(event.target.value)} />
+
         <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
+            Utwórz instytucję
         </button>
       </form>
     </div>

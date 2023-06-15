@@ -66,10 +66,12 @@ const NewRoomForm = (props) => {
         />
         <label for="name">Nazwa</label>
         <input
+          type="text"
           name="name"
           placeholder="Jan"
           value={roomName}
           onChange={event => setRoomName(event.target.value)} />
+
         <label for="Slots">Miejsca</label>
         <input
           name="Slots"
@@ -77,16 +79,21 @@ const NewRoomForm = (props) => {
           value={roomSlots}
           type="number"
           onChange={event => setRoomSlots(parseInt(event.target.value))} />
+
         <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
+            Utwórz pokój
         </button>
-        <p>Pokoje instytucji:</p>
-        <ul>
-          {roomList.map(room =>
-            <li key={room.value}>{room.label}</li>
-          )}
-        </ul>
+
+        <div className={`institution-rooms`}>
+          <p>Pokoje instytucji:</p>
+          <ul>
+            {roomList.map(room =>
+              <li key={room.value}>{room.label}</li>
+            )}
+          </ul>
+        </div>
       </form>
     </div>
   );
