@@ -1,22 +1,22 @@
-#assignments-table {
+/*table {
     width: 100%;
     border-collapse: collapse;
 }
 
-#assignments-table td, #assignments-table th {
+table td, table th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#assignments-table th {
+table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
     background-color: rgba(32, 15, 51, 1);
     font-size: 120%;
-    /*color: white;*/
+    color: white;
 }
 
-#assignments-table tr:nth-child(even){background-color: rgba(255, 255, 255, 0.1);}
+table tr:nth-child(even){background-color: rgba(255, 255, 255, 0.1);}
 
-#assignments-table tr:hover {background-color: rgba(255, 255, 255, 0.15);;}
+table tr:hover {background-color: rgba(255, 255, 255, 0.15);;}*/

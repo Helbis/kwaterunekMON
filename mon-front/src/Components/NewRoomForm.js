@@ -5,6 +5,8 @@ import {notifySuccess} from "../Util/Notifier";
 
 function NewRoomForm(props) {
 
+    // TODO: translate to PL
+
     const [institutionList, setInstitutionList] = useState([])
     const [roomList, setRoomList] = useState([])
     const [selectedInstitution, setSelectedInstitution] = useState(null)
@@ -57,29 +59,39 @@ function NewRoomForm(props) {
     }
 
     return (
-        <div id="new-room-form">
+        <div className={`formDiv`} id="new-room-form">
+            <form>
+            <h2>New room</h2>
+        
             <Select
                 options={institutionList}
                 onChange={newValue => handleInstitutionChanged(newValue)}
             />
+            <label for="name">Name</label>
             <input
+                name="name"
                 placeholder="Name"
                 value={roomName}
                 onChange={event => setRoomName(event.target.value)}/>
+            <label for="Slots">Slots</label>
             <input
+                name="Slots"
                 placeholder="Slots"
                 value={roomSlots}
                 type="number"
                 onChange={event => setRoomSlots(parseInt(event.target.value))}/>
-            <button
-                onClick={handleSubmit}>Submit
-            </button>
+            <input
+                type="submit"
+                className={`btnSubmit`}
+                onClick={handleSubmit}>
+            </input>
             <p>Institution's rooms:</p>
             <ul>
                 {roomList.map(room =>
                     <li key={room.value}>{room.label}</li>
                 )}
             </ul>
+            </form>
         </div>
     );
 }

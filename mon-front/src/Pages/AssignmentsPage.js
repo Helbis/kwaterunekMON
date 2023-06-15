@@ -88,7 +88,7 @@ function AssignmentsPage(props) {
                 }
                 </tbody>
             </table>
-            <button onClick={fetchData}>Fetch</button>
+            <input type="submit" onClick={fetchData}></input>
         </div>
     )
 }

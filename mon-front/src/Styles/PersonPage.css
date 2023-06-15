@@ -1,53 +1,31 @@
-#person-table {
-    /*font-family: Arial, Helvetica, sans-serif;*/
-    border-collapse: collapse;
-    width: 100%;
+table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-#person-table td, #person-table th {
-    border: 1px solid #ddd;
-    padding: 8px;
+table td,
+table th {
+  border: 2px solid grey;
+  padding: 8px;
 }
 
-#person-table tr:nth-child(even){background-color: rgba(255, 255, 255, 0.1);}
-
-#person-table tr:hover {background-color: rgba(255, 255, 255, 0.15);;}
-
-#person-table tr {
-    transition: 0.3s;
+table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-#person-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: rgba(32, 15, 51, 1);
-    font-size: 120%;
-    /*color: white;*/
+table tr:hover,
+table tr:focus {
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
-#new-person-form {
-    display: grid;
-    row-gap: 10%;
+table tr {
+  transition: 0.3s;
 }
 
-#new-person-form input {
-    background-color: transparent;
-    font-size: 120%;
-    box-shadow: inset 0px 0px;
-    color: inherit;
+table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: lightgrey;
+  font-size: 1.2em;
 }
-
-#new-person-form p {
-    font-size: 150%;
-    font-weight: bold;
-}
-
-.person-form-container {
-    margin-top: 50px;
-    padding-left: 30%;
-    width: 30%;
-    text-align: center;
-}
-
-

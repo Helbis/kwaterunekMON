@@ -117,9 +117,8 @@ function ShelteringPage() {
                     ref={selectRoomRef}
                 />
 
-                <button onClick={event => printValues()}>Print Values</button>
-                <br/>
-                <button onClick={event => submitAssignment()}>Submit</button>
+                <input type="submit" className={`btnSubmit`} onClick={event => printValues()}></input>
+                <input type="submit" className={`btnSubmit`} onClick={event => submitAssignment()}></input>
 
             </div>
             <div className='right-pane'>
