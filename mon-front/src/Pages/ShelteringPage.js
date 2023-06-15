@@ -117,8 +117,8 @@ const ShelteringPage = () => {
           ref={selectRoomRef}
         />
 
-        <input type="submit" className={`btnSubmit`} onClick={event => printValues()}></input>
-        <input type="submit" className={`btnSubmit`} onClick={event => submitAssignment()}></input>
+        <button className={`btnSubmit`} onClick={event => printValues()}></button>
+        <button className={`btnSubmit`} onClick={event => submitAssignment()}></button>
 
       </div>
       <div className='right-pane'>
