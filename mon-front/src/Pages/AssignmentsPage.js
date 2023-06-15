@@ -60,7 +60,7 @@ const AssignmentsPage = (props) => {
       }
     }
   }
-  // FIXME: finalize translation to PL!
+
   return (
     <div>
       <table id='assignments-table'>
