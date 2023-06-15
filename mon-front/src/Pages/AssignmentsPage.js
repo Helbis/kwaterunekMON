@@ -88,7 +88,7 @@ const AssignmentsPage = (props) => {
           }
         </tbody>
       </table>
-      <button onClick={fetchData}></button>
+      <button className={`btnSubmit`} onClick={fetchData}>Pobierz dane</button>
     </div>
   )
 }
