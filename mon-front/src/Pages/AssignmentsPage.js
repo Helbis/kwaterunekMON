@@ -60,7 +60,7 @@ const AssignmentsPage = (props) => {
       }
     }
   }
-
+	
   return (
     <div>
       <table id='assignments-table'>

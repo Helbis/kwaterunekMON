@@ -8,7 +8,7 @@ const NewInstitutionForm = (props) => {
   const handleSubmit = async () => {
     await createInstitution(name)
   };
-
+  // TODO: text for button
   return (
     <div className={`formDiv`} id="new-intitution-form">
       <form>
