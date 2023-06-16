@@ -11,13 +11,13 @@ import CreateInstitutionPage from "../../Pages/CreateInstitutionPage";
 
 export const ThemeContext = createContext(null);
 
-const App =() => {
+const App = () => {
 
-    const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("dark");
 
-    const toggleTheme = () => {
-        setTheme((curr) => (curr === "light" ? "dark" : "light"));
-    };
+  const toggleTheme = () => {
+    setTheme((curr) => (curr === "light" ? "dark" : "light"));
+  };
 
     return (
         <HashRouter>

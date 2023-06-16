@@ -13,7 +13,6 @@ const NavBar = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
 
-  // TODO: translate to PL
   // TODO: Why is there a vertical bar?
 
   return <nav className={`NavBar`}>

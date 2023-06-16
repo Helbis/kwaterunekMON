@@ -13,6 +13,10 @@
 
   --btn-clr-submit: green;
   --btn-clr-submit-hover: lightgreen;
+
+
+  --input-clr: black;
+  --input-plchld-clr: grey;
 }
 
 * {
@@ -30,6 +34,7 @@
 h2 {
   font-weight: bolder;
   display: block;
+  font-size: larger;
   height: 2rem;
   margin-top: auto;
   margin-bottom: auto;
@@ -86,7 +91,9 @@ body {
 }
 
 .navButton {
-  padding: 0.5em;
+  padding: 0.75rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
 
   background-color: var(--btn-clr);
   color: lightgrey;
@@ -138,7 +145,6 @@ body {
   background: rgba(255, 255, 255, 0.25);
   border-radius: var(--radius);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -154,39 +160,69 @@ label {
   margin-top: 1rem;
   margin-bottom: 0.5rem;
   text-align: left;
+
+  font-weight: bold;
+}
+
+label.dark {
+  color: darkgrey;
+}
+
+label.light {
+  color: lightgrey;
 }
 
 input {
   display: block;
   width: 100%;
+
   margin-top: 0px;
   margin-bottom: 10px;
+
   border: none;
-  padding: 0.75em;
   border-radius: var(--radius);
+
+  padding: 0.75em;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="tel"] {
+  color: black;
+}
+
+input:invalid {
+  outline: 4px dashed red;
+  outline-offset: 4px;
+}
+
+input::placeholder {
+  color: var(--input-plchld-clr);
 }
 
 input[type="file"] {
   display: block;
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-bottom: 10px;
-  border: none;
+
   padding: 5px;
+
+  border: none;
   border-radius: var(--radius);
 }
 
-input[type="submit"],
 .btnSubmit {
   display: block;
-  width: 30%;
-  height: 2rem;
+  height: 2.5rem;
+
+  text-align: center;
 
   margin-left: auto;
   margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
 
   border-radius: var(--radius);
   border: 1px solid #006d3a;
@@ -195,9 +231,29 @@ input[type="submit"],
   color: #fff;
 }
 
-input[type="submit"]:hover,
-input[type="submit"]:focus,
 .btnSubmit:hover,
 .btnSubmit:focus {
   background-color: var(--btn-clr-submit-hover);
+}
+
+/* INSTITUTION */
+.institution-rooms {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  border-top: solid grey 2px;
+}
+
+
+/* Additional stuff cross platform */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

@@ -9,22 +9,27 @@ const NewInstitutionForm = (props) => {
         await createInstitution(name)
     };
 
-    return (
-        <div className={`formDiv`} id="new-intitution-form">
-            <h2>Dodaj nową instytucję:</h2>
-            <label for="name">*Nazwa</label>
-            <input
-                name="name"
-                placeholder="Hotel pod jabłonią"
-                value={name}
-                onChange={event => setName(event.target.value)}/>
-            <button
-                className={`btnSubmit`}
-                onClick={handleSubmit}>
-                Zatwiedź
-            </button>
-        </div>
-    );
+  return (
+    <div className={`formDiv`} id="new-intitution-form">
+        <h2>Utwórz nową instytucję</h2>
+        <label for="name">Nazwa</label>
+        <input
+          name="name"
+          type="text"
+          pattern="[A-Za-z]+"
+          maxLength="100"
+          title="Proszę użyć znaków alfabetu"
+          placeholder="Hotel pod jabłonią"
+          value={name}
+          onChange={event => setName(event.target.value)} />
+
+        <button
+          className={`btnSubmit`}
+          onClick={handleSubmit}>
+            Utwórz instytucję
+        </button>
+    </div>
+  );
 }
 
 export default NewInstitutionForm;

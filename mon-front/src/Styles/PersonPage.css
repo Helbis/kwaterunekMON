@@ -8,6 +8,9 @@ table th {
   border: 2px solid grey;
   padding: 8px;
 }
+table th {
+  color: black;
+}
 
 table tr:nth-child(even) {
   background-color: rgba(255, 255, 255, 0.1);
@@ -23,9 +26,10 @@ table tr {
 }
 
 table th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
   text-align: left;
+  background-color: lightgrey;
   font-size: 1.4em;
   font-weight: bolder;
 }
