@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
-import { createInstitution } from "../Util/API";
+import React, {useState} from 'react';
+import {createInstitution} from "../Util/API";
 
 const NewInstitutionForm = (props) => {
 
-  const [name, setName] = useState("");
+    const [name, setName] = useState("");
 
-  const handleSubmit = async () => {
-    await createInstitution(name)
-  };
+    const handleSubmit = async () => {
+        await createInstitution(name)
+    };
 
   return (
     <div className={`formDiv`} id="new-intitution-form">
-      <form>
         <h2>Utwórz nową instytucję</h2>
         <label for="name">Nazwa</label>
         <input
@@ -29,7 +28,6 @@ const NewInstitutionForm = (props) => {
           onClick={handleSubmit}>
             Utwórz instytucję
         </button>
-      </form>
     </div>
   );
 }

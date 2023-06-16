@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { createRoom, fetchInstitutionList, fetchPersonList, fetchRoomListByInstitution } from "../Util/API";
+import { createRoom, fetchInstitutionList, fetchRoomListByInstitution } from "../Util/API";
 import Select from "react-select";
-import { notifySuccess } from "../Util/Notifier";
 
 const NewRoomForm = (props) => {
   const [institutionList, setInstitutionList] = useState([])
@@ -38,7 +37,7 @@ const NewRoomForm = (props) => {
     function parseRoomList(roomList) {
       const parsedList = []
       for (const room of roomList) {
-        const parsedName = `${room.name} (${room.slots} slots)`
+        const parsedName = `${room.name} (${room.slots}-osobowy)`
         parsedList.push({ value: room.id, label: parsedName })
       }
       return parsedList
@@ -57,25 +56,24 @@ const NewRoomForm = (props) => {
 
   return (
     <div className={`formDiv`} id="new-room-form">
-      <form>
-        <h2>Nowy pokój</h2>
-
+        <h2>Dodaj nowy pokój</h2>
         <Select
+            placeholder={`*Wybierz instytucję...`}
           options={institutionList}
           onChange={newValue => handleInstitutionChanged(newValue)}
         />
-        <label for="name">Nazwa</label>
+        <label for="name">*Nazwa</label>
         <input
           type="text"
           name="name"
-          placeholder="Jan"
+          placeholder="Duża sypialnia"
           pattern="[A-Za-z]+"
           title="Proszę użyć znaków alfabetu"
           maxLength="100"
           value={roomName}
           onChange={event => setRoomName(event.target.value)} />
 
-        <label for="Slots">Miejsca</label>
+        <label for="Slots">*Ilość miejsc</label>
         <input
           name="Slots"
           placeholder="5"
@@ -88,18 +86,17 @@ const NewRoomForm = (props) => {
         <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
-          Utwórz pokój
+            Zatwierdź
         </button>
 
         <div className={`institution-rooms`}>
-          <p>Pokoje instytucji:</p>
+          <p>Pokoje w wybranej instytucji:</p>
           <ul>
             {roomList.map(room =>
               <li key={room.value}>{room.label}</li>
             )}
           </ul>
         </div>
-      </form>
     </div>
   );
 }

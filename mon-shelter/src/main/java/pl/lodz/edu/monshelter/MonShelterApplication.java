@@ -9,18 +9,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @SpringBootApplication
 public class MonShelterApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MonShelterApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication app = new SpringApplication(MonShelterApplication.class);
+        app.setRegisterShutdownHook(false);
+        app.run(args);
+    }
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**").allowedOrigins("https://mon-front.onrender.com");
-			}
-		};
-	}
+            }
+        };
+    }
 
 }

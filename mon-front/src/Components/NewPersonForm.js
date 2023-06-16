@@ -14,10 +14,8 @@ const NewPersonForm = (props) => {
 
   return (
     <div className={`formDiv`}>
-      <form id="new-person-form">
         <h2>Dodaj nową osobę</h2>
-
-        <label for="name">Pierwsze imię</label>
+        <label for="name">*Imię</label>
         <input
           type="text"
           name="name"
@@ -28,7 +26,7 @@ const NewPersonForm = (props) => {
           value={name}
           onChange={event => setName(event.target.value)} />
 
-        <label for="surname">Nazwisko</label>
+        <label for="surname">*Nazwisko</label>
         <input
           type="text"
           name="surname"
@@ -51,7 +49,7 @@ const NewPersonForm = (props) => {
           value={rank}
           onChange={event => setRank(event.target.value)} />
 
-        <label for="telephone">Telefon</label>
+        <label for="telephone">Numer Telefonu</label>
         <input
           type="tel"
           name="telephone"
@@ -61,7 +59,7 @@ const NewPersonForm = (props) => {
           onChange={event => setTelephone(event.target.value)}
         />
 
-        <label for="info">Info</label>
+        <label for="info">Informacje dodatkowe</label>
         <input
           type="text"
           name="info"
@@ -73,9 +71,8 @@ const NewPersonForm = (props) => {
         <button
           className={`btnSubmit`}
           onClick={handleSubmit}>
-            Dodaj osobę
+          Zatwierdź
         </button>
-      </form>
     </div>
   );
 }

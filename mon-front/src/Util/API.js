@@ -35,7 +35,7 @@ export const createPerson = async (name, surname, rank, info, telephone) => {
       BASE_API_URL + 'person',
       parsePerson(name, surname, rank, info, telephone))
     if (200 === response.status) {
-      notifySuccess('Person created successfully!')
+      notifySuccess('Osoba dodana pomyślnie!')
     }
     return response.data
   } catch (error) {
@@ -50,7 +50,7 @@ export const createInstitution = async (name) => {
       { name: name }
     )
     if (200 === response.status) {
-      notifySuccess('Institution created successfully!')
+      notifySuccess('Instytucja dodana pomyślnie!')
     }
     return response.data
   } catch (error) {
@@ -69,7 +69,7 @@ export const createRoom = async (name, slots, institutionId) => {
       }
     )
     if (200 === response.status) {
-      notifySuccess('Room created successfully!')
+      notifySuccess('Pokój dodany pomyślnie!')
     }
   } catch (error) {
     handleError(error)
@@ -116,7 +116,7 @@ export const postAssignment = async (beginDate, endDate, personId, roomId) => {
       BASE_API_URL + 'assignment',
       payload)
     if (200 === response.status) {
-      notifySuccess('Assignment created successfully!')
+      notifySuccess('Osoba została zameldowana pomyślnie!')
     }
     return response.data
   } catch (error) {

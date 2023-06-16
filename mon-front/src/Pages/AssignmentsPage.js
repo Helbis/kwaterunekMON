@@ -26,10 +26,9 @@ const AssignmentsPage = (props) => {
     setRooms(rooms)
   };
 
-  useEffect(() => {
-
-    fetchData();
-  }, []);
+    useEffect(() => {
+        fetchData();
+    }, []);
 
   function idMatches(id) {
     return (element) => element.id === id
@@ -51,46 +50,46 @@ const AssignmentsPage = (props) => {
     }
   }
 
-  const getInstitutionNameByRoomId = (id) => {
-    const foundRoom = rooms.find(idMatches(id))
-    if (foundRoom != null) {
-      const found = institutions.find(idMatches(foundRoom.institutionId))
-      if (found != null) {
-        return `${found.name}`
-      }
+    const getInstitutionNameByRoomId = (id) => {
+        const foundRoom = rooms.find(idMatches(id))
+        if (foundRoom != null) {
+            const found = institutions.find(idMatches(foundRoom.institutionId))
+            if (found != null) {
+                return `${found.name}`
+            }
+        }
     }
-  }
-	
-  return (
-    <div>
-      <table id='assignments-table'>
-        <thead>
-          <tr>
-            <th>Osoba</th>
-            <th>Instytucja</th>
-            <th>Pokój</th>
-            <th>Od</th>
-            <th>Do</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            assignments
-              .map(assignment =>
-                <tr key={assignment.id}>
-                  <td>{getPersonNameById(assignment.personId)}</td>
-                  <td>{getInstitutionNameByRoomId(assignment.roomId)}</td>
-                  <td>{getRoomNameById(assignment.roomId)}</td>
-                  <td>{prettyDate(new Date(assignment.fromTime))}</td>
-                  <td>{prettyDate(new Date(assignment.toTime))}</td>
+
+    return (
+        <div>
+            <table id='assignments-table'>
+                <thead>
+                <tr>
+                    <th>Osoba</th>
+                    <th>Instytucja</th>
+                    <th>Pokój</th>
+                    <th>Zameldowany od</th>
+                    <th>Zameldowany do</th>
                 </tr>
-              )
-          }
-        </tbody>
-      </table>
-      <button className={`btnSubmit`} onClick={fetchData}>Pobierz dane</button>
-    </div>
-  )
+                </thead>
+                <tbody>
+                {
+                    assignments
+                        .map(assignment =>
+                            <tr key={assignment.id}>
+                                <td>{getPersonNameById(assignment.personId)}</td>
+                                <td>{getInstitutionNameByRoomId(assignment.roomId)}</td>
+                                <td>{getRoomNameById(assignment.roomId)}</td>
+                                <td>{prettyDate(new Date(assignment.fromTime))}</td>
+                                <td>{prettyDate(new Date(assignment.toTime))}</td>
+                            </tr>
+                        )
+                }
+                </tbody>
+            </table>
+            <button className={`btnSubmit`} onClick={fetchData}>Odśwież</button>
+        </div>
+    )
 }
 
 export default AssignmentsPage

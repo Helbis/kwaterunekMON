@@ -33,21 +33,21 @@ public class PersonService {
     public Person getPersonWithId(Long id) {
         Optional<Person> personOptional = repository.findById(id);
         return personOptional.orElseThrow(
-                () -> new NotFoundException(String.format("Person with given id: %s not found.", id)));
+                () -> new NotFoundException(String.format("Osoba o ID: %s nie odnaleziona.", id)));
     }
 
     public Person addNewPerson(Person person) {
         if (person.getId() != null) {
             Optional<Person> expected = repository.findById(person.getId());
             if (expected.isPresent()) {
-                throw new ConflictException(String.format("Person with given id: %s already exists.", person.getId()));
+                throw new ConflictException(String.format("Osoba o ID: %s już istnieje.", person.getId()));
             }
         }
         if (person.getTelephone() != null) {
             Optional<Person> expected = repository.findByTelephone(person.getTelephone());
             if (expected.isPresent()) {
                 throw new ConflictException(
-                        String.format("Person with given telephone: %s already exists.", person.getTelephone()));
+                        String.format("Osoba z podanym numerem telefonu: %s już istnieje.", person.getTelephone()));
             }
         }
         return repository.save(person);
@@ -56,7 +56,7 @@ public class PersonService {
     public Person editPerson(Person personEntity) {
         Long id = personEntity.getId();
         Person personToEdit = repository.findById(id).orElseThrow(
-                () -> new NotFoundException(String.format("Person with given id: %s not found.", id)));
+                () -> new NotFoundException(String.format("Osoba o podanym ID: %s nie odnaleziona.", id)));
         copyProperties(personEntity, personToEdit);
         return repository.save(personToEdit);
     }
@@ -75,7 +75,7 @@ public class PersonService {
                 .anyMatch(ass -> ass.getToTime().isAfter(ZonedDateTime.now()) && ass.isActive());
         if (conflicted) {
             throw new ConflictException(
-                    "Person with id %s has planned assignments in future, cannot be deleted.".formatted(id));
+                    "Osoba o ID %s ma zaplanowane przyszłe zameldowania, nie może zostać usunięta.".formatted(id));
         }
         repository.deleteById(id);
     }

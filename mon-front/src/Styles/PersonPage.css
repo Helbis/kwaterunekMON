@@ -7,6 +7,8 @@ table td,
 table th {
   border: 2px solid grey;
   padding: 8px;
+}
+table th {
   color: black;
 }
 
@@ -28,5 +30,6 @@ table th {
   padding-bottom: 0.9rem;
   text-align: left;
   background-color: lightgrey;
-  font-size: 1.2rem;
+  font-size: 1.4em;
+  font-weight: bolder;
 }
