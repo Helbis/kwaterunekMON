@@ -6,8 +6,8 @@ class PersonTable extends Component {
       <table id="person-table">
         <thead>
           <tr>
-            <th>Imię i Nazwisko</th>
             <th>Ranga</th>
+            <th>Imię i Nazwisko</th>
             <th>Numer Telefonu</th>
             <th>Dodatkowe Informacje</th>
           </tr>
@@ -17,8 +17,8 @@ class PersonTable extends Component {
             this.props.persons
               .map(person =>
                 <tr key={person.id}>
-                  <td>{person.name} {person.surname}</td>
                   <td>{person.rank}</td>
+                  <td>{person.name} {person.surname}</td>
                   <td>{person.telephone}</td>
                   <td>{person.info}</td>
                 </tr>

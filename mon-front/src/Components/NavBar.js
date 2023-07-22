@@ -18,7 +18,7 @@ const NavBar = () => {
   return <nav className={`NavBar`}>
     <ul id="nav-links-list">
       <li>
-        <Link className={`navButton`} to="/">Strona Główna</Link>
+        <Link className={`navButton`} to="/">Wczytywanie plików</Link>
       </li>
       <li>
         <Link className={`navButton`} to="people">Osoby</Link>
@@ -35,6 +35,10 @@ const NavBar = () => {
       </li>
       <li>
         <Link className={`navButton`} to="shelter">Zamelduj</Link>
+      </li>
+      <li>|</li>
+      <li>
+        <Link className={`navButton`} to="report">Raport</Link>
       </li>
     </ul>
   </nav>;
