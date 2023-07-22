@@ -1,0 +1,38 @@
+.inputField {
+    max-width: 50%;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-right: auto;
+    display: flex;
+}
+
+.inputField input {
+    width:10%;
+}
+
+.inputField label {
+    width: 90%;
+}
+
+.exportButton {
+    display: block;
+    height: 2.5rem;
+
+    text-align: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    border-radius: var(--radius);
+    border: 1px solid #006d3a;
+
+    background-color: var(--btn-clr-submit);
+    color: #fff;
+
+    margin-bottom: 80px;
+}
