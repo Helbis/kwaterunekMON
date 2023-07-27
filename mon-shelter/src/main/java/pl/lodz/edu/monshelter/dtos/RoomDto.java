@@ -19,6 +19,9 @@ public class RoomDto extends AbstractDto {
     @Min(value = 1,message = "Pokój musi mieć przynajmniej jedno miejsce")
     private int slots;
 
+    @Min(value = 0, message = "Piętro nie może być mniejsze niż 0")
+    private int floor;
+
     private int occupation;
 
     @NotNull(message = "Nie podano ID instytucji")

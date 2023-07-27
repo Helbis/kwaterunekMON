@@ -28,11 +28,11 @@ public class RoomService {
         Location location2 = locationService.getLocation(2L);
 
         List<Room> rooms = List.of(
-                new Room("Pokój 1", 5, location1),
-                new Room("Pokój 1A", 3, location1),
-                new Room("Sypialnia", 2, location1),
-                new Room("Koszary A", 25, location2),
-                new Room("Koszary B", 25, location2)
+                new Room("Pokój 1", 5, 1, location1),
+                new Room("Pokój 1A", 3, 1, location1),
+                new Room("Sypialnia", 2, 2, location1),
+                new Room("Koszary A", 25, 0, location2),
+                new Room("Koszary B", 25, 0, location2)
         );
 
         roomRepository.saveAll(rooms);

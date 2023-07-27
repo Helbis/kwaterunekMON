@@ -16,6 +16,8 @@ public class Room {
 
     private int slots;
 
+    private int floor;
+
     @ManyToOne
     private Location location;
 
@@ -23,10 +25,11 @@ public class Room {
     private List<Assignment> assignmentList;
 
 
-    public Room(String name, int slots, Location location) {
+    public Room(String name, int slots, int floor, Location location) {
         this.name = name;
         this.slots = slots;
         this.location = location;
+        this.floor = floor;
     }
 
     public Room() {

@@ -16,12 +16,12 @@ public class DtoConverter {
 
     public static PersonDto toPersonDto(Person person) {
         return new PersonDto(person.getId(), person.getName(), person.getSurname(),
-                person.getRank(), person.getInfo(), person.getTelephone(), person.isActive());
+                person.getRank(), person.getInstitution(), person.getInfo(), person.getTelephone(), person.isActive());
     }
 
     public static Person createPersonEntity(PersonDto personDto) {
         return new Person(personDto.getId(), personDto.getName(), personDto.getSurname(),
-                personDto.getRank(), personDto.getInfo(), personDto.getTelephone(), personDto.isActive());
+                personDto.getRank(), personDto.getInstitution(), personDto.getInfo(), personDto.getTelephone(), personDto.isActive());
     }
 
     public static List<PersonDto> toPersonDtoList(Collection<Person> personCollection) {
@@ -49,7 +49,7 @@ public class DtoConverter {
     }
 
     public static Room createRoomEntity(RoomDto roomDto) {
-        return new Room(roomDto.getName(), roomDto.getSlots(), null);
+        return new Room(roomDto.getName(), roomDto.getSlots(), roomDto.getFloor(), null);
     }
 
     public static List<AssignmentDto> toAssignmentDtoList(List<Assignment> assignmentsList) {

@@ -23,6 +23,8 @@ public class Person {
     @Column(nullable = true)
     private String rank;
 
+    @Column(nullable = false)
+    private String institution;
 
     @Column(nullable = true)
     private String info;
@@ -36,15 +38,16 @@ public class Person {
     @OneToMany(mappedBy = "person")
     private List<Assignment> assignmentList;
 
-    public Person(Long id, String name, String surname, String rank, String info, String telephone, boolean active) {
-        this(name, surname, rank, info, telephone, active);
+    public Person(Long id, String name, String surname, String rank, String institution, String info, String telephone, boolean active) {
+        this(name, surname, rank, institution, info, telephone, active);
         this.id = id;
     }
 
-    public Person(String name, String surname, String rank, String info, String telephone, boolean active) {
+    public Person(String name, String surname, String rank, String institution, String info, String telephone, boolean active) {
         this.name = name;
         this.surname = surname;
         this.rank = rank;
+        this.institution=institution;
         this.info = info;
         this.telephone = telephone;
         this.active = active;
