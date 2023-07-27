@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-public class Institution {
+public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,18 +16,18 @@ public class Institution {
     @Column(unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "institution")
+    @OneToMany(mappedBy = "location")
     private List<Room> roomList = new ArrayList<>();
 
-    public Institution(String name) {
+    public Location(String name) {
         this.name = name;
     }
 
-    public Institution() {
+    public Location() {
 
     }
 
-    public Institution(Long id, String name) {
+    public Location(Long id, String name) {
         this(name);
         this.id = id;
     }

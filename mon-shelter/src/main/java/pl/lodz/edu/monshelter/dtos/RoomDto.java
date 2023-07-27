@@ -22,12 +22,12 @@ public class RoomDto extends AbstractDto {
     private int occupation;
 
     @NotNull(message = "Nie podano ID instytucji")
-    private Long institutionId;
+    private Long locationId;
 
-    public RoomDto(Long id, String name, int slots, Long institutionId) {
+    public RoomDto(Long id, String name, int slots, Long locationId) {
         super(id);
         this.name = name;
         this.slots = slots;
-        this.institutionId = institutionId;
+        this.locationId = locationId;
     }
 }

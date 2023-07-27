@@ -2,7 +2,8 @@ import axios from "axios";
 import { notifyError, notifySuccess, notifyWarning } from "./Notifier";
 
 
-const BASE_API_URL = 'https://mon-shelter.onrender.com/api/';
+// const BASE_API_URL = 'https://mon-shelter.onrender.com/api/';
+const BASE_API_URL = 'http://localhost:8080/api/';
 
 export const fetchPersonList = async () => {
   try {
