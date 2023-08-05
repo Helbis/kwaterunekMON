@@ -10,7 +10,7 @@ import { prettyDate } from "../Util/Parser";
 const ShelteringPage = () => {
 
   const [personList, setPersonList] = useState([])
-  const [institutionList, setInstitutionList] = useState([])
+  const [locationList, setLocationList] = useState([])
   const [roomList, setRoomList] = useState([])
 
   const [selectedPerson, setSelectedPerson] = useState('')
@@ -28,14 +28,14 @@ const ShelteringPage = () => {
     setPersonList(parsePersonList(fetchedPersonList))
 
     const fetchedInstitutionList = await fetchInstitutionList()
-    setInstitutionList(parseInstitutionList(fetchedInstitutionList))
+    setLocationList(parseInstitutionList(fetchedInstitutionList))
 
   };
 
   const parsePersonList = (personList) => {
     const parsedList = []
     for (const person of personList) {
-      const parsedName = `${person.name} ${person.surname}`
+      const parsedName = `${person.rank} ${person.name} ${person.surname} ${person.institution}`
       parsedList.push({ value: person.id, label: parsedName })
     }
     return parsedList
@@ -101,7 +101,7 @@ const ShelteringPage = () => {
           placeholder={'Wybierz osobę...'}onChange={newValue => setSelectedPerson(newValue.value)}
         />
         <Select
-          options={institutionList}placeholder={'Wybierz instytucję...'}
+          options={locationList}placeholder={'Wybierz lokalizacje...'}
           onChange={newValue => handleInstitutionChanged(newValue)}
         />
         <Select

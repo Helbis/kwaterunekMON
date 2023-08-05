@@ -16,17 +16,20 @@ public class Room {
 
     private int slots;
 
+    private int floor;
+
     @ManyToOne
-    private Institution institution;
+    private Location location;
 
     @OneToMany(mappedBy = "room")
     private List<Assignment> assignmentList;
 
 
-    public Room(String name, int slots, Institution institution) {
+    public Room(String name, int slots, int floor, Location location) {
         this.name = name;
         this.slots = slots;
-        this.institution = institution;
+        this.location = location;
+        this.floor = floor;
     }
 
     public Room() {

@@ -33,6 +33,8 @@ public class PersonDto extends AbstractDto {
     // Nullable
     private String rank;
 
+    private String institution;
+
     // Nullable
     private String info;
 
@@ -43,10 +45,11 @@ public class PersonDto extends AbstractDto {
     // Nullable
     private boolean active;
 
-    public PersonDto(Long id, String name, String surname, String rank, String info, String telephone, boolean active) {
+    public PersonDto(Long id, String name, String surname, String rank, String institution, String info, String telephone, boolean active) {
         super(id);
         this.name = name;
         this.surname = surname;
+        this.institution = institution;
         this.rank = rank;
         this.info = info;
         this.telephone = telephone;

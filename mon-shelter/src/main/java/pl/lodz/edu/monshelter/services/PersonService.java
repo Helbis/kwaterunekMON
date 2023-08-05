@@ -20,6 +20,21 @@ public class PersonService {
     @Autowired
     public PersonService(PersonRepository repository) {
         this.repository = repository;
+
+        // Data init
+        List<Person> people = List.of(
+                new Person("Jacek", "Grudzień", "Generał", "Instytucja 1", null, "543-543-543", true),
+                new Person("Beata", "Wąs", "Cywil", "Instytucja 1", null, null, true),
+                new Person("Monika", "Piórko", "Cywil", "Instytucja 1", "Kucharka", null, true),
+                new Person("Adam", "Nowak", "Sierżant", "Instytucja 2", null, null, true),
+                new Person("Tom", "Binary", "Pułkownik", "Instytucja 2", "Preferuje mieszkać sam", null, true),
+                new Person("Piotr", "Salko", "Generał", "Instytucja 2", null, null, true),
+                new Person("Anna", "Piątek", "Cywil", "Instytucja 2", "Higienistka", "928-182-321", true),
+                new Person("Ludwik", "Nowakowski", "Cywil", "Instytucja 3", "Koserwator budynku", null, true),
+                new Person("Bob", "Nieaktywny", null, "Instytucja 3", "Wyjechał z kraju", null, false)
+        );
+        repository.saveAll(people);
+
     }
 
     public List<Person> getPeopleList(boolean includeInactive) {

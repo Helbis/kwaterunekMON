@@ -3,9 +3,9 @@ package pl.lodz.edu.monshelter.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import pl.lodz.edu.monshelter.dtos.InstitutionDto;
-import pl.lodz.edu.monshelter.entities.Institution;
-import pl.lodz.edu.monshelter.services.InstitutionService;
+import pl.lodz.edu.monshelter.dtos.LocationDto;
+import pl.lodz.edu.monshelter.entities.Location;
+import pl.lodz.edu.monshelter.services.LocationService;
 import pl.lodz.edu.monshelter.util.DtoConverter;
 
 import java.util.List;
@@ -14,22 +14,22 @@ import java.util.List;
 @RequestMapping("institution")
 public class InstitutionController {
 
-    private final InstitutionService service;
+    private final LocationService service;
 
     @Autowired
-    public InstitutionController(InstitutionService service) {
+    public InstitutionController(LocationService service) {
         this.service = service;
     }
 
     @GetMapping("all")
-    public List<InstitutionDto> getAllInstitutions() {
+    public List<LocationDto> getAllInstitutions() {
         return
-                DtoConverter.toIntitutionDtoList(service.getInstitutionsList());
+                DtoConverter.toIntitutionDtoList(service.getLocationList());
     }
 
     @PostMapping()
-    public InstitutionDto createInstitution(@RequestBody @Validated InstitutionDto institutionDto) {
-        Institution entity = service.createInstitution(DtoConverter.createInstitutionEntity(institutionDto));
+    public LocationDto createInstitution(@RequestBody @Validated LocationDto locationDto) {
+        Location entity = service.createLocation(DtoConverter.createInstitutionEntity(locationDto));
         return DtoConverter.toInstitutionDto(entity);
     }
 }

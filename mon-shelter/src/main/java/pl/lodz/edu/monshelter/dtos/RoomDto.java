@@ -19,15 +19,18 @@ public class RoomDto extends AbstractDto {
     @Min(value = 1,message = "Pokój musi mieć przynajmniej jedno miejsce")
     private int slots;
 
+    @Min(value = 0, message = "Piętro nie może być mniejsze niż 0")
+    private int floor;
+
     private int occupation;
 
     @NotNull(message = "Nie podano ID instytucji")
-    private Long institutionId;
+    private Long locationId;
 
-    public RoomDto(Long id, String name, int slots, Long institutionId) {
+    public RoomDto(Long id, String name, int slots, Long locationId) {
         super(id);
         this.name = name;
         this.slots = slots;
-        this.institutionId = institutionId;
+        this.locationId = locationId;
     }
 }
