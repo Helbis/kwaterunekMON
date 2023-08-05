@@ -1,9 +1,9 @@
-import InputForm from "../Components/Form";
+import ImportForm from "../Components/ImportForm";
 
 const Home = () => {
   return (
     <div>
-      <InputForm />
+      <ImportForm />
     </div>)
 };
 
