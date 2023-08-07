@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("import")
+@RequestMapping("api/import")
 public class ImportController {
 
     private PersonService personService;

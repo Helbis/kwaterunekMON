@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { createRoom, fetchInstitutionList, fetchRoomListByInstitution } from "../Util/API";
+import { createRoom, fetchLocationList, fetchRoomListByLocation } from "../Util/API";
 import Select from "react-select";
 
 const NewRoomForm = (props) => {
@@ -24,7 +24,7 @@ const NewRoomForm = (props) => {
       return parsedList
     };
 
-    const fetchedInstitutionList = await fetchInstitutionList()
+    const fetchedInstitutionList = await fetchLocationList()
     setInstitutionList(parseInstitutionList(fetchedInstitutionList))
     if (selectedInstitution != null) {
       await handleInstitutionChanged(selectedInstitution)
@@ -43,14 +43,14 @@ const NewRoomForm = (props) => {
       return parsedList
     }
 
-    const result = await fetchRoomListByInstitution(newValue.value)
+    const result = await fetchRoomListByLocation(newValue.value)
     setRoomList(parseRoomList(result))
   }
 
 
   const handleSubmit = async () => {
     await createRoom(roomName, roomSlots, selectedInstitution.value)
-    await fetchData()
+      await fetchData()
 
   }
 

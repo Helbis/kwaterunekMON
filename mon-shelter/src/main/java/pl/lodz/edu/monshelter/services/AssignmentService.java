@@ -22,37 +22,6 @@ public class AssignmentService {
     public AssignmentService(AssignmentRepository assignmentRepository, RoomService roomService,
             PersonService personService) {
         this.assignmentRepository = assignmentRepository;
-
-        // Data init
-        Room room1 = roomService.getRoomList().get(0);
-        Room room2 = roomService.getRoomList().get(1);
-        Room room3 = roomService.getRoomList().get(2);
-
-        Person person1 = personService.getPeopleList(true).get(0);
-        Person person2 = personService.getPeopleList(true).get(1);
-        Person person3 = personService.getPeopleList(true).get(2);
-        Person person4 = personService.getPeopleList(true).get(3);
-        Person person5 = personService.getPeopleList(true).get(4);
-
-        ZoneId zoneId = ZoneId.of("UTC+1");
-        List<Assignment> assignments = List.of(
-                new Assignment(
-                        ZonedDateTime.of(2023, 05, 05, 12, 0, 0, 0, zoneId),
-                        ZonedDateTime.of(2023, 05, 10, 12, 0, 0, 0, zoneId), person1, room1),
-                new Assignment(
-                        ZonedDateTime.of(2023, 05, 01, 12, 0, 0, 0, zoneId),
-                        ZonedDateTime.of(2023, 05, 05, 12, 0, 0, 0, zoneId), person2, room1),
-                new Assignment(
-                        ZonedDateTime.of(2023, 07, 12, 12, 0, 0, 0, zoneId),
-                        ZonedDateTime.of(2023, 07, 14, 12, 0, 0, 0, zoneId), person3, room2),
-                new Assignment(
-                        ZonedDateTime.of(2023, 07, 20, 12, 0, 0, 0, zoneId),
-                        ZonedDateTime.of(2023, 07, 21, 12, 0, 0, 0, zoneId), person4, room3),
-                new Assignment(
-                        ZonedDateTime.of(2023, 07, 01, 12, 0, 0, 0, zoneId),
-                        ZonedDateTime.of(2023, 07, 10, 12, 0, 0, 0, zoneId), person5, room3)
-        );
-        assignmentRepository.saveAll(assignments);
     }
 
     public List<Assignment> getAssignmentsList() {

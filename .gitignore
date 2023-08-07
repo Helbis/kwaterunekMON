@@ -1,3 +1,5 @@
 mon-front/node_modules
 .DS_Store
 data/
+.idea
+bin/

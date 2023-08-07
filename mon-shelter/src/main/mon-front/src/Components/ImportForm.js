@@ -26,9 +26,9 @@ const ImportForm = () => {
 
     return (
         <div className="formDiv">
-            <label htmlFor="file">Wybierz plik z listą żołnierzy (.csv, .xlsx)</label>
+            <label htmlFor="file">Wybierz plik z listą żołnierzy (.csv)</label>
             <input type="file" lang="pl" onChange={handleFileChanged} title="Proszę wybrać plik w opisanym formacie"
-                   id="file" name="file" accept=".csv , .xlsx"/>
+                   id="file" name="file" accept=".csv"/>
 
             <button className={`btnSubmit`} onClick={handleSubmit}>Importuj osoby</button>
         </div>

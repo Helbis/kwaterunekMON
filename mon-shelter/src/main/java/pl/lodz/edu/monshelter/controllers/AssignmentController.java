@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pl.lodz.edu.monshelter.dtos.AssignmentDto;
+import pl.lodz.edu.monshelter.dtos.AssignmentEntryDto;
 import pl.lodz.edu.monshelter.entities.Assignment;
 import pl.lodz.edu.monshelter.services.AssignmentService;
 import pl.lodz.edu.monshelter.services.PersonService;
@@ -13,7 +14,7 @@ import pl.lodz.edu.monshelter.util.DtoConverter;
 import java.util.List;
 
 @RestController
-@RequestMapping("assignment")
+@RequestMapping("api/assignment")
 public class AssignmentController {
 
     private final AssignmentService assignmentService;
@@ -29,8 +30,8 @@ public class AssignmentController {
     }
 
     @GetMapping("all")
-    public List<AssignmentDto> getAllAssignments() {
-        return DtoConverter.toAssignmentDtoList(assignmentService.getAssignmentsList());
+    public List<AssignmentEntryDto> getAllAssignments() {
+        return DtoConverter.toAssignmentEntryDtoList(assignmentService.getAssignmentsList());
     }
 
     @PostMapping

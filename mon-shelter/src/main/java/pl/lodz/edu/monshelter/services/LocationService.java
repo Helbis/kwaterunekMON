@@ -19,12 +19,6 @@ public class LocationService {
     @Autowired
     public LocationService(LocationRepository repository) {
         this.repository = repository;
-
-        List<Location> institutions = List.of(
-                new Location("MPGK Warszawa"),
-                new Location("Akadamik Łódź")
-        );
-        repository.saveAll(institutions);
     }
 
     public List<Location> getLocationList() {
