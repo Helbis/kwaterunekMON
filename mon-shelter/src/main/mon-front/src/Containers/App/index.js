@@ -7,7 +7,7 @@ import PersonPage from "../../Pages/PersonPage";
 import { ToastContainer } from "react-toastify";
 import AssignmentsPage from "../../Pages/AssignmentsPage";
 import CreatePersonPage from "../../Pages/CreatePersonPage";
-import CreateInstitutionPage from "../../Pages/CreateInstitutionPage";
+import CreateLocationPage from "../../Pages/CreateLocationPage";
 import ReportPage from "../../Pages/ReportPage";
 
 export const ThemeContext = createContext(null);
@@ -30,7 +30,7 @@ const App = () => {
                     <Route path="shelter" element={<ShelteringPage />} />
                     <Route path="shelters" element={<AssignmentsPage />} />
                     <Route path="create-person" element={<CreatePersonPage />} />
-                    <Route path="create-institution" element={<CreateInstitutionPage />} />
+                    <Route path="create-institution" element={<CreateLocationPage />} />
                     <Route path="report" element={<ReportPage />}/>
                 </Route>
             </Routes>

@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {
     fetchAssignments,
-    fetchInstitutionList,
-    fetchPersonList,
-    fetchRoomList
 } from "../Util/API";
 import {prettyDate} from "../Util/Parser";
 import '../Styles/AssignmentsPage.css'
@@ -11,76 +8,57 @@ import '../Styles/AssignmentsPage.css'
 const AssignmentsPage = (props) => {
 
     const [assignments, setAssignments] = useState([])
-    const [persons, setPersons] = useState([])
-    const [institutions, setInstitutions] = useState([])
-    const [rooms, setRooms] = useState([])
+    const [filteredAssignments, setFilteredAssignments] = useState([])
+
 
     const fetchData = async () => {
-        const assignments = await fetchAssignments()
-        setAssignments(assignments)
-        const persons = await fetchPersonList()
-        setPersons(persons)
-        const institutions = await fetchInstitutionList()
-        setInstitutions(institutions)
-        const rooms = await fetchRoomList()
-        setRooms(rooms)
+        const fetchedAssignments = await fetchAssignments()
+        setAssignments(fetchedAssignments)
+        setFilteredAssignments(fetchedAssignments)
+
     };
+
+    function matchPattern(assignment, pattern) {
+        const patternUp = pattern.toUpperCase()
+        const person = assignment.person != null ? assignment.person.toUpperCase() : ""
+        const institution = assignment.institution != null ? assignment.institution.toUpperCase() : ""
+        const location = assignment.location != null ? assignment.location.toUpperCase() : ""
+        const room = assignment.room != null ? assignment.room.toUpperCase() : ""
+        const floor = assignment.floor != null ? assignment.floor.toString().toUpperCase() : ""
+        const from = assignment.from != null ? prettyDate(new Date(assignment.from)) : ""
+        const to = assignment.to != null ? prettyDate(new Date(assignment.to)) : ""
+        const rank = assignment.rank != null ? assignment.rank.toUpperCase() : ""
+        return person.includes(patternUp)
+            || institution.includes(patternUp)
+            || location.includes(patternUp)
+            || room.includes(patternUp)
+            || floor.includes(patternUp)
+            || from.includes(patternUp)
+            || to.includes(patternUp)
+            || rank.includes(patternUp)
+    }
 
     useEffect(() => {
         fetchData();
     }, []);
 
-    function idMatches(id) {
-        return (element) => element.id === id
-    }
-
-    // element.id === id
-
-    const getPersonNameById = (id) => {
-        const found = persons.find(idMatches(id))
-        if (found != null) {
-            return `${found.name} ${found.surname}`
-        }
-    }
-    const getPersonRankById = (id) => {
-        const found = persons.find(idMatches(id))
-        if (found != null) {
-            return `${found.rank}`
-        }
-    }
-    const getPersonInstitutionById = (id) => {
-        const found = persons.find(idMatches(id))
-        if (found != null) {
-            return `${found.institution}`
-        }
-    }
-
-    const getRoomNameById = (id) => {
-        const found = rooms.find(idMatches(id))
-        if (found != null) {
-            return `${found.name}`
-        }
-    }
-
-    const getRoomFloorById = (id) => {
-        const found = rooms.find(idMatches(id))
-        if (found != null) {
-            return `${found.floor}`
-        }
-    }
-
-    const getLocationNameByRoomId = (id) => {
-        const foundRoom = rooms.find(idMatches(id))
-        if (foundRoom != null) {
-            const found = institutions.find(idMatches(foundRoom.locationId))
-            if (found != null) {
-                return `${found.name}`
-            }
+    const handlePatternChanged = (e) => {
+        const newPattern = e.target.value
+        if (newPattern === '') {
+            setFilteredAssignments(assignments)
+        } else {
+            setFilteredAssignments(assignments.filter((assignment) => {
+                return matchPattern(assignment, newPattern)
+            }))
         }
     }
 
     return (
         <div>
+            <input
+                placeholder='Szukaj'
+                onChange={handlePatternChanged}
+            />
             <table id='assignments-table'>
                 <thead>
                 <tr>
@@ -96,23 +74,23 @@ const AssignmentsPage = (props) => {
                 </thead>
                 <tbody>
                 {
-                    assignments
+                    filteredAssignments
                         .map(assignment =>
                             <tr key={assignment.id}>
-                                <td>{getPersonRankById(assignment.personId)}</td>
-                                <td>{getPersonNameById(assignment.personId)}</td>
-                                <td>{getPersonInstitutionById(assignment.personId)}</td>
-                                <td>{getLocationNameByRoomId(assignment.roomId)}</td>
-                                <td>{getRoomNameById(assignment.roomId)}</td>
-                                <td>{getRoomFloorById(assignment.roomId)}</td>
-                                <td>{prettyDate(new Date(assignment.fromTime))}</td>
-                                <td>{prettyDate(new Date(assignment.toTime))}</td>
+                                <td>{assignment.rank}</td>
+                                <td>{assignment.person}</td>
+                                <td>{assignment.institution}</td>
+                                <td>{assignment.location}</td>
+                                <td>{assignment.room}</td>
+                                <td>{assignment.floor}</td>
+                                <td>{prettyDate(new Date(assignment.from))}</td>
+                                <td>{prettyDate(new Date(assignment.to))}</td>
                             </tr>
                         )
                 }
                 </tbody>
             </table>
-            <button className={`btnSubmit`} onClick={fetchData}>Odśwież</button>
+            <button id='refresh-assignments' className={`btnSubmit`} onClick={fetchData}>Odśwież</button>
         </div>
     )
 }

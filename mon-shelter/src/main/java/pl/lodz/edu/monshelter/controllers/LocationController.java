@@ -11,13 +11,13 @@ import pl.lodz.edu.monshelter.util.DtoConverter;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/institution")
-public class InstitutionController {
+@RequestMapping("api/location")
+public class LocationController {
 
     private final LocationService service;
 
     @Autowired
-    public InstitutionController(LocationService service) {
+    public LocationController(LocationService service) {
         this.service = service;
     }
 

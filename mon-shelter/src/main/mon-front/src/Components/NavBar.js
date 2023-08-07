@@ -36,10 +36,10 @@ const NavBar = () => {
       <li>
         <Link className={`navButton`} to="shelter">Zamelduj</Link>
       </li>
-      <li>|</li>
-      <li>
-        <Link className={`navButton`} to="report">Raport</Link>
-      </li>
+      {/*<li>|</li>*/}
+      {/*<li>*/}
+      {/*  <Link className={`navButton`} to="report">Raport</Link>*/}
+      {/*</li>*/}
     </ul>
   </nav>;
 }

@@ -1,6 +1,7 @@
-table {
+#person-table {
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: 7vh;
 }
 
 table td,

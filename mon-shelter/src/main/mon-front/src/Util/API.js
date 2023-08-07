@@ -44,14 +44,14 @@ export const createPerson = async (name, surname, rank, info, telephone) => {
     }
 }
 
-export const createInstitution = async (name) => {
+export const createLocation = async (name) => {
     try {
         const response = await axios.post(
-            BASE_API_URL + 'institution',
+            BASE_API_URL + 'location',
             {name: name}
         )
         if (200 === response.status) {
-            notifySuccess('Instytucja dodana pomyślnie!')
+            notifySuccess('Lokacja utworzona pomyślnie!')
         }
         return response.data
     } catch (error) {
@@ -59,27 +59,27 @@ export const createInstitution = async (name) => {
     }
 }
 
-export const createRoom = async (name, slots, institutionId) => {
+export const createRoom = async (name, slots, locationId) => {
     try {
         const response = await axios.post(
             BASE_API_URL + 'room',
             {
                 name: name,
                 slots: slots,
-                institutionId: institutionId
+                locationId: locationId
             }
         )
         if (200 === response.status) {
-            notifySuccess('Pokój dodany pomyślnie!')
+            notifySuccess('Pokój utworzony pomyślnie!')
         }
     } catch (error) {
         handleError(error)
     }
 }
 
-export const fetchInstitutionList = async () => {
+export const fetchLocationList = async () => {
     try {
-        const response = await axios.get(BASE_API_URL + 'institution/all')
+        const response = await axios.get(BASE_API_URL + 'location/all')
         return response.data
     } catch (error) {
         handleError(error)
@@ -95,8 +95,8 @@ export const fetchRoomList = async () => {
     }
 }
 
-export const fetchRoomListByInstitution = async (institution_id) => {
-    const url = BASE_API_URL + 'room/' + institution_id
+export const fetchRoomListByLocation = async (location_id) => {
+    const url = BASE_API_URL + 'room/' + location_id
     try {
         const response = await axios.get(url)
         return response.data
@@ -163,7 +163,10 @@ function handleError(error) {
     }
     if (error.response.status === 400) {
         notifyWarning(error.response.data.message)
-    } else {
+    } if (error.response.status === 500) {
+        notifyWarning('Błąd importu pliku. Upewnij się, że plik .csv, który importujesz jest w kodowniu UTF-8')
+    }
+    else {
         notifyError(error.response.data.message)
         console.log(error)
     }

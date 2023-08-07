@@ -1,9 +1,6 @@
 package pl.lodz.edu.monshelter.util;
 
-import pl.lodz.edu.monshelter.dtos.AssignmentDto;
-import pl.lodz.edu.monshelter.dtos.LocationDto;
-import pl.lodz.edu.monshelter.dtos.PersonDto;
-import pl.lodz.edu.monshelter.dtos.RoomDto;
+import pl.lodz.edu.monshelter.dtos.*;
 import pl.lodz.edu.monshelter.entities.Assignment;
 import pl.lodz.edu.monshelter.entities.Location;
 import pl.lodz.edu.monshelter.entities.Person;
@@ -63,5 +60,13 @@ public class DtoConverter {
 
     public static Assignment createAssignmentFromDto(AssignmentDto assignmentDto) {
         return new Assignment(assignmentDto.getFromTime(), assignmentDto.getToTime(), null, null);
+    }
+
+    public static List<AssignmentEntryDto> toAssignmentEntryDtoList(List<Assignment> assignmentsList) {
+        return assignmentsList.stream().map(DtoConverter::toAssignmentEntryDto).toList();
+    }
+
+    private static AssignmentEntryDto toAssignmentEntryDto(Assignment assignment) {
+        return new AssignmentEntryDto(assignment.getId(), assignment.getFromTime(), assignment.getToTime(), assignment.getPerson().getRank(), String.format("%s %s", assignment.getPerson().getName(), assignment.getPerson().getSurname()), assignment.getRoom().getFloor(), assignment.getPerson().getInstitution(), assignment.getRoom().getLocation().getName(), assignment.getRoom().getName());
     }
 }

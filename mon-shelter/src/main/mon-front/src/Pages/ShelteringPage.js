@@ -1,6 +1,6 @@
 import Select from 'react-select'
 import { useEffect, useRef, useState } from "react";
-import { fetchInstitutionList, fetchPersonList, fetchRoomListByInstitution, postAssignment } from "../Util/API";
+import { fetchLocationList, fetchPersonList, fetchRoomListByLocation, postAssignment } from "../Util/API";
 import '../Styles/ShelteringPage.css'
 import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite-no-reset.min.css';
@@ -27,7 +27,7 @@ const ShelteringPage = () => {
     const fetchedPersonList = await fetchPersonList();
     setPersonList(parsePersonList(fetchedPersonList))
 
-    const fetchedInstitutionList = await fetchInstitutionList()
+    const fetchedInstitutionList = await fetchLocationList()
     setLocationList(parseInstitutionList(fetchedInstitutionList))
 
   };
@@ -61,7 +61,7 @@ const ShelteringPage = () => {
 
   async function handleInstitutionChanged(newValue) {
     selectRoomRef.current.clearValue()
-    const result = await fetchRoomListByInstitution(newValue.value)
+    const result = await fetchRoomListByLocation(newValue.value)
     setRoomList(parseRoomList(result))
   }
 
