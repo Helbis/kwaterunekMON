@@ -13,7 +13,7 @@ import pl.lodz.edu.monshelter.util.DtoConverter;
 import java.util.List;
 
 @RestController
-@RequestMapping("assignment")
+@RequestMapping("api/assignment")
 public class AssignmentController {
 
     private final AssignmentService assignmentService;

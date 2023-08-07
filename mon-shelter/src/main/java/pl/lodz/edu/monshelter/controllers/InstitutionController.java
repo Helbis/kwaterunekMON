@@ -11,7 +11,7 @@ import pl.lodz.edu.monshelter.util.DtoConverter;
 import java.util.List;
 
 @RestController
-@RequestMapping("institution")
+@RequestMapping("api/institution")
 public class InstitutionController {
 
     private final LocationService service;

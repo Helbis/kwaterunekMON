@@ -13,7 +13,7 @@ import pl.lodz.edu.monshelter.util.DtoConverter;
 import java.util.List;
 
 @RestController
-@RequestMapping("room")
+@RequestMapping("api/room")
 public class RoomController {
 
     private final RoomService service;
