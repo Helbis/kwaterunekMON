@@ -14,27 +14,29 @@ export const fetchPersonList = async () => {
     }
 }
 
-export const createPerson = async (name, surname, rank, info, telephone) => {
-    function parsePerson(name, surname, rank, info, telephone) {
-        const nameData = name ? name : null
-        const surnameData = surname ? surname : null
-        const rankData = rank ? rank : null
-        const telephoneData = telephone ? telephone : null
-        const infoData = info ? info : null
-        return {
-            name: nameData,
-            surname: surnameData,
-            rank: rankData,
-            telephone: telephoneData,
-            info: infoData,
-            active: true
-        }
+function parsePerson(id, name, surname, institution, rank, info, telephone) {
+    const idData = id ? id : null
+    const nameData = name ? name : null
+    const surnameData = surname ? surname : null
+    const institutionData = institution ? institution : null
+    const rankData = rank ? rank : null
+    const telephoneData = telephone ? telephone : null
+    const infoData = info ? info : null
+    return {
+        id: idData,
+        name: nameData,
+        surname: surnameData,
+        institution: institutionData,
+        rank: rankData,
+        telephone: telephoneData,
+        info: infoData,
+        active: true
     }
+}
 
+export const createPerson = async (name, surname, institution, rank, info, telephone) => {
     try {
-        const response = await axios.post(
-            BASE_API_URL + 'person',
-            parsePerson(name, surname, rank, info, telephone))
+        const response = await axios.post(BASE_API_URL + 'person', parsePerson(null, name, surname, institution, rank, info, telephone))
         if (200 === response.status) {
             notifySuccess('Osoba dodana pomyślnie!')
         }
@@ -44,12 +46,35 @@ export const createPerson = async (name, surname, rank, info, telephone) => {
     }
 }
 
+export const editPerson = async (id, name, surname, institution, rank, info, telephone) => {
+    try {
+        const response = await axios.put(BASE_API_URL + 'person', parsePerson(id, name, surname, institution, rank, info, telephone), {
+            headers: {
+                'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json',
+            }
+        })
+        if (200 === response.status) {
+            notifySuccess('Osoba edytowana pomyślnie!')
+        }
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const deletePerson = async (id) => {
+    try {
+        const response = await axios.delete(BASE_API_URL + `person/${id}`)
+        if (200 === response.status) {
+            notifySuccess('Osoba usunięta pomyślnie!')
+        }
+    } catch (error) {
+        handleError(error)
+    }
+}
+
 export const createLocation = async (name) => {
     try {
-        const response = await axios.post(
-            BASE_API_URL + 'location',
-            {name: name}
-        )
+        const response = await axios.post(BASE_API_URL + 'location', {name: name})
         if (200 === response.status) {
             notifySuccess('Lokacja utworzona pomyślnie!')
         }
@@ -59,16 +84,11 @@ export const createLocation = async (name) => {
     }
 }
 
-export const createRoom = async (name, slots, locationId) => {
+export const createRoom = async (name, floor, slots, locationId) => {
     try {
-        const response = await axios.post(
-            BASE_API_URL + 'room',
-            {
-                name: name,
-                slots: slots,
-                locationId: locationId
-            }
-        )
+        const response = await axios.post(BASE_API_URL + 'room', {
+            name: name, floor: floor, slots: slots, locationId: locationId
+        })
         if (200 === response.status) {
             notifySuccess('Pokój utworzony pomyślnie!')
         }
@@ -113,9 +133,7 @@ export const postAssignment = async (beginDate, endDate, personId, roomId) => {
         active: true
     }
     try {
-        const response = await axios.post(
-            BASE_API_URL + 'assignment',
-            payload)
+        const response = await axios.post(BASE_API_URL + 'assignment', payload)
         if (200 === response.status) {
             notifySuccess('Osoba została zameldowana pomyślnie!')
         }
@@ -125,11 +143,35 @@ export const postAssignment = async (beginDate, endDate, personId, roomId) => {
     }
 }
 
+export const editAssignmentPerson = async (assignmentId, personId) => {
+    const params = {
+        assignmentId: assignmentId, personId: personId
+    }
+    try {
+        const response = await axios.put(BASE_API_URL + 'assignment', null,
+            {params: params})
+        if (200 === response.status) {
+            notifySuccess('Zamledowana osoba zmieniona pomyślnie!')
+        }
+    } catch (error) {
+        handleError(error)
+    }
+}
+
+export const deleteAssignment = async (assignmentId) => {
+    try {
+        const response = await axios.delete(BASE_API_URL + `assignment/${assignmentId}`)
+        if (200 === response.status) {
+            notifySuccess('Rezerwacja została usunięta!')
+        }
+    } catch (error) {
+        handleError(error)
+    }
+}
+
 export const fetchAssignments = async () => {
     try {
-        const response = await axios.get(
-            BASE_API_URL + 'assignment/all'
-        )
+        const response = await axios.get(BASE_API_URL + 'assignment/all')
         return response.data
     } catch (error) {
         handleError(error)
@@ -141,14 +183,11 @@ export const importPersonList = async (importFile) => {
         file: importFile
     }
     try {
-        const response = await axios.post(
-            BASE_API_URL + 'import/upload',
-            payload, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                }
+        const response = await axios.post(BASE_API_URL + 'import/upload', payload, {
+            headers: {
+                "Content-Type": "multipart/form-data",
             }
-        )
+        })
         notifySuccess(`Zaimportowano nowe osoby: ${response.data}`)
         return response.data
     } catch (error) {
@@ -160,13 +199,11 @@ export const importPersonList = async (importFile) => {
 function handleError(error) {
     if (error.response.status === 409) {
         notifyWarning(error.response.data.detail)
-    }
-    if (error.response.status === 400) {
+    } else if (error.response.status === 400) {
         notifyWarning(error.response.data.message)
-    } if (error.response.status === 500) {
+    } else if (error.response.status === 500) {
         notifyWarning('Błąd importu pliku. Upewnij się, że plik .csv, który importujesz jest w kodowniu UTF-8')
-    }
-    else {
+    } else {
         notifyError(error.response.data.message)
         console.log(error)
     }

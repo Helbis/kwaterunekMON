@@ -1,3 +1,7 @@
+.assignments-page {
+    background-color: inherit;
+}
+
 #assignments-table {
     width: 100%;
     border-collapse: collapse;

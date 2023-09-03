@@ -1,12 +1,10 @@
 package pl.lodz.edu.monshelter.controllers;
 
 import jakarta.validation.Valid;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 import pl.lodz.edu.monshelter.dtos.PersonDto;
 import pl.lodz.edu.monshelter.entities.Person;
 import pl.lodz.edu.monshelter.services.PersonService;
@@ -54,7 +52,7 @@ public class PersonController {
     }
 
     @PutMapping
-    public PersonDto editPerson(@RequestBody PersonDto person) {
+    public PersonDto editPerson(@RequestBody @Valid PersonDto person) {
         Person personEntity = DtoConverter.createPersonEntity(person);
         return DtoConverter.toPersonDto(service.editPerson(personEntity));
     }

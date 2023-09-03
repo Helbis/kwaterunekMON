@@ -1,8 +1,27 @@
-import React, {Component} from 'react';
+import React, {Component, useRef, useState} from 'react';
+import PersonEditDialog from "./PersonEditDialog";
+import {deletePerson, importPersonList} from "../Util/API";
+import * as API from "../Util/API";
 
-class PersonTable extends Component {
-    render() {
-        return (
+const PersonTable = (props) => {
+
+    const editDialogRef = useRef()
+    const [isEditing, setIsEditing] = useState(false)
+    const toggleEdit = (id, name, surname, institution, rank, telephone, info) => {
+        setIsEditing(true)
+        editDialogRef.current.openDialog(id, name, surname, institution, rank, telephone, info)
+    }
+
+    const deletePerson = async (id,name) => {
+        if (window.confirm(`Czy chcesz usunąć osobę: ${name}?`)) {
+            await API.deletePerson(id)
+            props.refreshAction()
+        }
+    }
+
+    return (
+        <div className={'person-page-container'}>
+            <PersonEditDialog ref={editDialogRef} refreshAction={props.refreshAction}/>
             <table id="person-table">
                 <thead>
                 <tr>
@@ -11,11 +30,12 @@ class PersonTable extends Component {
                     <th>Instytucja</th>
                     <th>Numer Telefonu</th>
                     <th>Dodatkowe Informacje</th>
+                    <th>Akcje</th>
                 </tr>
                 </thead>
                 <tbody>
                 {
-                    this.props.persons
+                    props.persons
                         .map(person =>
                             <tr key={person.id}>
                                 <td>{person.rank}</td>
@@ -23,13 +43,29 @@ class PersonTable extends Component {
                                 <td>{person.institution}</td>
                                 <td>{person.telephone}</td>
                                 <td>{person.info}</td>
+                                <td>
+                                    <button
+                                        title={'Edytuj'}
+                                        className={'action-person-button'}
+                                        onClick={() => toggleEdit(person.id, person.name, person.surname, person.institution, person.rank, person.telephone, person.info)}>
+                                        ✏️
+                                    </button>
+                                    <button
+                                        title={'Usuń'}
+                                        className={'action-person-button'}
+                                        onClick={() => deletePerson(person.id, `${person.rank} ${person.name} ${person.surname}`)}
+                                    >
+                                        ❌
+                                    </button>
+                                </td>
                             </tr>
                         )
                 }
                 </tbody>
             </table>
-        )
-    }
+        </div>
+    )
+
 }
 
 export default PersonTable;

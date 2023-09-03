@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.lodz.edu.monshelter.dtos.AssignmentDto;
 import pl.lodz.edu.monshelter.dtos.AssignmentEntryDto;
 import pl.lodz.edu.monshelter.entities.Assignment;
+import pl.lodz.edu.monshelter.entities.Person;
 import pl.lodz.edu.monshelter.services.AssignmentService;
 import pl.lodz.edu.monshelter.services.PersonService;
 import pl.lodz.edu.monshelter.services.RoomService;
@@ -40,5 +41,16 @@ public class AssignmentController {
         assignment.setPerson(personService.getPersonWithId(assignmentDto.getPersonId()));
         assignment.setRoom(roomService.getRoomWithId(assignmentDto.getRoomId()));
         return DtoConverter.toAssignmentDto(assignmentService.createAssignment(assignment));
+    }
+
+    @PutMapping
+    public AssignmentEntryDto editAssignmentPerson(Long assignmentId, Long personId) {
+        Person person = personService.getPersonWithId(personId);
+        return DtoConverter.toAssignmentEntryDto(assignmentService.changeAssignmentPerson(assignmentId, person));
+    }
+
+    @DeleteMapping("{id}")
+    public  void deleteAssignment(@PathVariable Long id){
+        assignmentService.delete(id);
     }
 }

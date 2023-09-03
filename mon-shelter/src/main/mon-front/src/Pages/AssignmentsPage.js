@@ -1,11 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {
     fetchAssignments,
 } from "../Util/API";
 import {prettyDate} from "../Util/Parser";
 import '../Styles/AssignmentsPage.css'
+import AssignmentEditDialog from "../Components/AssignmentEditDialog";
+import * as API from "../Util/API";
 
 const AssignmentsPage = (props) => {
+
+
+    const editDialogRef = useRef()
 
     const [assignments, setAssignments] = useState([])
     const [filteredAssignments, setFilteredAssignments] = useState([])
@@ -53,9 +58,23 @@ const AssignmentsPage = (props) => {
         }
     }
 
+    const toggleEdit = (assignment) => {
+        editDialogRef.current.openAssignmentEditDialog(assignment)
+    }
+
+    const deleteAssignment = async (id) => {
+        if (window.confirm(`Czy chcesz rezerwację?`)) {
+            await API.deleteAssignment(id)
+            await fetchData();
+        }
+    };
     return (
-        <div>
+        <div className={"assignments-page"}>
+            <AssignmentEditDialog ref={editDialogRef} refreshAction={() => {
+                fetchData()
+            }}/>
             <input
+                className={`text-input search-input`}
                 placeholder='Szukaj'
                 onChange={handlePatternChanged}
             />
@@ -70,6 +89,7 @@ const AssignmentsPage = (props) => {
                     <th>Piętro</th>
                     <th>Zameldowany od</th>
                     <th>Zameldowany do</th>
+                    <th>Akcje</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -85,6 +105,21 @@ const AssignmentsPage = (props) => {
                                 <td>{assignment.floor}</td>
                                 <td>{prettyDate(new Date(assignment.from))}</td>
                                 <td>{prettyDate(new Date(assignment.to))}</td>
+                                <td>
+                                    <button
+                                        title={'Edytuj'}
+                                        className={'action-person-button'}
+                                        onClick={() => toggleEdit(assignment)}>
+                                        ✏️
+                                    </button>
+                                    <button
+                                        title={'Usuń'}
+                                        className={'action-person-button'}
+                                        onClick={() => deleteAssignment(assignment.id)}
+                                    >
+                                        ❌
+                                    </button>
+                                </td>
                             </tr>
                         )
                 }

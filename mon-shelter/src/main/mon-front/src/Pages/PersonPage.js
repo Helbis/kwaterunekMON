@@ -6,15 +6,16 @@ import {fetchPersonList} from "../Util/API";
 const PersonPage = () => {
     const [persons, setPersons] = useState([])
     const [filteredPersons, setFilteredPersons] = useState([])
+    const [pattern, setPattern] = useState('')
 
     useEffect(() => {
         fetchData();
     }, []);
 
     const fetchData = async () => {
-        const result = await fetchPersonList();
+        const result = await fetchPersonList()
         setPersons(result)
-        setFilteredPersons(result)
+        applyPattern(pattern, result)
     };
 
     function matchPattern(person, pattern) {
@@ -33,25 +34,33 @@ const PersonPage = () => {
             || rank.includes(patternUp)
     }
 
-    const handlePatternChanged = (e) => {
-        const newPattern = e.target.value
+    function applyPattern(newPattern, allPersons) {
         if (newPattern === '') {
-            setFilteredPersons(persons)
+            setFilteredPersons(allPersons)
         } else {
-            setFilteredPersons(persons.filter((person) => {
-                return matchPattern(person,newPattern)
+            setFilteredPersons(allPersons.filter((person) => {
+                return matchPattern(person, newPattern)
             }))
         }
+    }
+
+    const handlePatternChanged = (e) => {
+        const newPattern = e.target.value
+        setPattern(newPattern)
+        applyPattern(newPattern, persons);
     }
 
     // TODO: add theme support maybe
     return (
         <div className={`person-page-container`}>
             <input
+                className={'text-input search-input'}
                 placeholder='Szukaj'
                 onChange={handlePatternChanged}
             />
-            <PersonTable persons={filteredPersons}/>
+            <PersonTable persons={filteredPersons} refreshAction={() => {
+                fetchData()
+            }}/>
         </div>
     )
 }
