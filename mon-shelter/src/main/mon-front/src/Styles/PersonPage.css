@@ -1,36 +1,49 @@
 #person-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 7vh;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 7vh;
 }
 
 table td,
 table th {
-  border: 2px solid grey;
-  padding: 8px;
+    border: 2px solid grey;
+    padding: 8px;
 }
+
 table th {
-  color: black;
+    color: black;
 }
 
 table tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 table tr:hover,
 table tr:focus {
-  background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 table tr {
-  transition: 0.3s;
+    transition: 0.3s;
 }
 
 table th {
-  padding-top: 0.9rem;
-  padding-bottom: 0.9rem;
-  text-align: left;
-  background-color: lightgrey;
-  font-size: 1.4em;
-  font-weight: bolder;
+    padding-top: 0.9rem;
+    padding-bottom: 0.9rem;
+    text-align: left;
+    background-color: lightgrey;
+    font-size: 1.4em;
+    font-weight: bolder;
 }
+
+.action-person-button {
+    background-color: transparent;
+    border: gray solid 1px;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.person-page-container {
+    background-color: inherit;
+}
+

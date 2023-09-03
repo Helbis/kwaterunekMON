@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.lodz.edu.monshelter.entities.Person;
 import pl.lodz.edu.monshelter.entities.Room;
 import pl.lodz.edu.monshelter.exceptions.ConflictException;
+import pl.lodz.edu.monshelter.exceptions.NotFoundException;
+import pl.lodz.edu.monshelter.repositories.PersonRepository;
 import pl.lodz.edu.monshelter.util.CollectionUtils;
 import pl.lodz.edu.monshelter.entities.Assignment;
 import pl.lodz.edu.monshelter.repositories.AssignmentRepository;
@@ -12,15 +14,15 @@ import pl.lodz.edu.monshelter.repositories.AssignmentRepository;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssignmentService {
 
     private final AssignmentRepository assignmentRepository;
-
     @Autowired
     public AssignmentService(AssignmentRepository assignmentRepository, RoomService roomService,
-            PersonService personService) {
+                             PersonService personService) {
         this.assignmentRepository = assignmentRepository;
     }
 
@@ -48,5 +50,15 @@ public class AssignmentService {
     private boolean assignmentsConflicts(Assignment ass1, Assignment ass2) {
         return !(ass1.getFromTime().isBefore(ass2.getFromTime()) && ass1.getToTime().isBefore(ass2.getFromTime()) ||
                 ass1.getFromTime().isAfter(ass2.getToTime()) && ass1.getToTime().isAfter(ass2.getToTime()));
+    }
+
+    public Assignment changeAssignmentPerson(Long assignmentId, Person person) {
+        Assignment assignment = assignmentRepository.findById(assignmentId).orElseThrow(() -> new NotFoundException(String.format("Rezerwacja o ID: %s nie odnaleziona.", assignmentId)));
+        assignment.setPerson(person);
+        return assignmentRepository.save(assignment);
+    }
+
+    public void delete(Long id) {
+        assignmentRepository.deleteById(id);
     }
 }

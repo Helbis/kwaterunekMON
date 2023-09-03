@@ -188,7 +188,7 @@ input {
 input[type="text"],
 input[type="number"],
 input[type="tel"] {
-  color: black;
+  /*color: black;*/
 }
 
 input:invalid {
@@ -241,7 +241,7 @@ input[type="file"] {
   margin-top: 2rem;
   margin-bottom: 2rem;
   padding-top: 1rem;
-  border-top: solid grey 2px;
+  background-color: transparent;
 }
 
 
@@ -256,4 +256,18 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.text-input {
+  background-color: rgba(255,255,255,0.1);
+  font-weight: bold;
+  font-size: 1.2vh;
+}
+
+.search-input {
+  width: 50%;
+}
+
+.select-dropdown > div {
+  color: var(--light-mode-text);
 }

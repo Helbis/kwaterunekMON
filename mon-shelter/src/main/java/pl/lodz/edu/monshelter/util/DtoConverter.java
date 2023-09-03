@@ -66,7 +66,7 @@ public class DtoConverter {
         return assignmentsList.stream().map(DtoConverter::toAssignmentEntryDto).toList();
     }
 
-    private static AssignmentEntryDto toAssignmentEntryDto(Assignment assignment) {
+    public static AssignmentEntryDto toAssignmentEntryDto(Assignment assignment) {
         return new AssignmentEntryDto(assignment.getId(), assignment.getFromTime(), assignment.getToTime(), assignment.getPerson().getRank(), String.format("%s %s", assignment.getPerson().getName(), assignment.getPerson().getSurname()), assignment.getRoom().getFloor(), assignment.getPerson().getInstitution(), assignment.getRoom().getLocation().getName(), assignment.getRoom().getName());
     }
 }

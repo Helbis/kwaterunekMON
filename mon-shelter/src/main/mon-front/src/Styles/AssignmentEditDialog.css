@@ -1,0 +1,14 @@
+.assignment-edit-box {
+    background-color: inherit;
+    border: 3px solid #5a605c;
+    border-radius: 0px 30px 0px 30px;
+    position: fixed;
+    top:2%;
+    left: 2%;
+    width: 20%;
+    min-width: 400px;
+    height: 25vh;
+    min-height: 300px;
+    padding: 1.5%;
+    overflow: auto;
+}

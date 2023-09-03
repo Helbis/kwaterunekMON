@@ -33,6 +33,7 @@ public class PersonDto extends AbstractDto {
     // Nullable
     private String rank;
 
+    @NotBlank(message = "Instycucja nie może być pusta")
     private String institution;
 
     // Nullable

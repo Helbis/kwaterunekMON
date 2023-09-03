@@ -75,8 +75,9 @@ public class PersonService {
                 .anyMatch(ass -> ass.getToTime().isAfter(ZonedDateTime.now()) && ass.isActive());
         if (conflicted) {
             throw new ConflictException(
-                    "Osoba o ID %s ma zaplanowane przyszłe zameldowania, nie może zostać usunięta.".formatted(id));
+                    "Osoba ma zaplanowane przyszłe zameldowania, nie może zostać usunięta.");
         }
-        repository.deleteById(id);
+        person.setActive(false);
+        repository.save(person);
     }
 }
