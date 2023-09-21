@@ -12,7 +12,7 @@
     </parent>
     <groupId>pl.lodz.edu</groupId>
     <artifactId>mon-shelter</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.5</version>
     <name>mon-shelter</name>
     <description>Sheltering Rest API</description>
     <properties>
